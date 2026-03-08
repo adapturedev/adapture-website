@@ -541,6 +541,51 @@
       }
     }
 
+    /** Converts inline SVG elements into PNG data-URI <img> tags for better Gmail compatibility. */
+    async function convertInlineSvgToPng(rootElement) {
+      const svgElements = Array.from(rootElement.querySelectorAll("svg"));
+      for (const svgElement of svgElements) {
+        try {
+          const width = Number(svgElement.getAttribute("width")) || svgElement.clientWidth || 48;
+          const height = Number(svgElement.getAttribute("height")) || svgElement.clientHeight || 48;
+          const serializedSvg = new XMLSerializer().serializeToString(svgElement);
+          const svgBlob = new Blob([serializedSvg], { type: "image/svg+xml;charset=utf-8" });
+          const svgUrl = URL.createObjectURL(svgBlob);
+
+          const image = new Image();
+          await new Promise((resolve, reject) => {
+            image.onload = resolve;
+            image.onerror = reject;
+            image.src = svgUrl;
+          });
+
+          const canvas = document.createElement("canvas");
+          canvas.width = width;
+          canvas.height = height;
+          const context = canvas.getContext("2d");
+          if (!context) {
+            URL.revokeObjectURL(svgUrl);
+            continue;
+          }
+
+          context.drawImage(image, 0, 0, width, height);
+          const pngDataUrl = canvas.toDataURL("image/png");
+          URL.revokeObjectURL(svgUrl);
+
+          const pngImage = document.createElement("img");
+          pngImage.setAttribute("src", pngDataUrl);
+          pngImage.setAttribute("width", String(width));
+          pngImage.setAttribute("height", String(height));
+          pngImage.setAttribute("alt", "Adapture icon");
+          pngImage.setAttribute("style", "display:block;border:0;");
+
+          svgElement.replaceWith(pngImage);
+        } catch (error) {
+          // Keep original SVG if conversion fails.
+        }
+      }
+    }
+
     async function copySignature() {
       const clone = signatureRoot.cloneNode(true);
       const useSvg = logoModeInput.value === "svg";
@@ -559,7 +604,10 @@
 
       if (useSvg) {
         if (cloneGmailLogo) cloneGmailLogo.remove();
-        if (cloneSvgLogo) cloneSvgLogo.style.display = "block";
+        if (cloneSvgLogo) {
+          cloneSvgLogo.style.display = "block";
+          await convertInlineSvgToPng(cloneSvgLogo);
+        }
       } else {
         if (cloneSvgLogo) cloneSvgLogo.remove();
         if (cloneGmailLogo) {
@@ -606,7 +654,7 @@
         }
 
         statusMessage.innerHTML = useSvg
-          ? "SVG version copied. If Gmail strips it, switch to PNG mode instead."
+          ? "Signature copied with SVG icon converted to PNG for better Gmail compatibility."
           : "Signature copied. If the image is missing after pasting, use Gmail's <strong>Insert image</strong> with the hosted URL.";
       } catch (error) {
         selectPreview();
