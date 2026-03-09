@@ -133,14 +133,15 @@ const translations = {
     },
     footer: {
       tagline: "Automatize melhor. Cresça mais rápido.",
+      slogan: "Adapte-se ao futuro.",
       copyright: "Adapture. Todos os direitos reservados.",
     },
     meta: {
-      title: "Adapture — Automação com IA para PMEs",
+      title: "Adapture — Adapte-se ao Futuro | Automação com IA para PMEs",
       description:
-        "A Adapture usa IA e automação para acelerar pequenas e médias empresas através de transformação digital e soluções personalizadas. Otimize as suas operações hoje.",
+        "Adapte-se ao futuro com a Adapture. Usamos IA e automação para acelerar pequenas e médias empresas através de transformação digital e soluções personalizadas.",
       ogDescription:
-        "Usamos IA e automação para acelerar organizações através de transformação digital e soluções personalizadas.",
+        "Adapte-se ao futuro. Usamos IA e automação para acelerar organizações através de transformação digital e soluções personalizadas.",
     },
   },
   en: {
@@ -272,14 +273,15 @@ const translations = {
     },
     footer: {
       tagline: "Automate smarter. Grow faster.",
+      slogan: "Adapt to the future.",
       copyright: "Adapture. All rights reserved.",
     },
     meta: {
-      title: "Adapture — AI-Powered Automation for SMBs",
+      title: "Adapture — Adapt to the Future | AI-Powered Automation for SMBs",
       description:
-        "Adapture uses AI and automation to accelerate small-to-medium businesses through digital transformation and personalized solutions. Streamline your operations today.",
+        "Adapt to the future with Adapture. We use AI and automation to accelerate small-to-medium businesses through digital transformation and personalized solutions.",
       ogDescription:
-        "We use AI and automation to accelerate organizations through digital transformation and personalized solutions.",
+        "Adapt to the future. We use AI and automation to accelerate organizations through digital transformation and personalized solutions.",
     },
   },
 };

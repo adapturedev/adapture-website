@@ -1,23 +1,14 @@
+import { Linkedin, Github, Instagram, Facebook } from "lucide-react";
 import { getTranslations, type Locale } from "@/lib/i18n";
 
 export default function Footer({ locale }: { locale: Locale }) {
   const t = getTranslations(locale);
 
   return (
-    <footer className="border-t border-border/60 bg-card py-14">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-6 sm:flex-row sm:justify-between">
-        {/* Brand */}
-        <div className="flex flex-col items-center gap-2 sm:items-start">
-          <span className="font-heading text-lg font-bold tracking-tight text-fg">
-            Adapture
-          </span>
-          <p className="text-sm text-subtle">
-            {t.footer.tagline}
-          </p>
-        </div>
-
-        {/* Links */}
-        <nav className="flex gap-7 text-sm">
+    <footer className="border-t border-border/60 bg-card py-8">
+      {/* Top row: nav left, social right */}
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
+        <nav className="flex gap-6 text-sm">
           <a href="#services" className="text-subtle transition-colors duration-200 hover:text-fg">
             {t.nav.services}
           </a>
@@ -29,12 +20,30 @@ export default function Footer({ locale }: { locale: Locale }) {
           </a>
         </nav>
 
-
+        <div className="flex items-center gap-4">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-subtle transition-colors duration-200 hover:text-primary">
+            <Linkedin size={16} strokeWidth={1.8} />
+          </a>
+          <a href="https://github.com/adapturedev" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-subtle transition-colors duration-200 hover:text-primary">
+            <Github size={16} strokeWidth={1.8} />
+          </a>
+          <a href="https://www.instagram.com/adapture.ai" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-subtle transition-colors duration-200 hover:text-primary">
+            <Instagram size={16} strokeWidth={1.8} />
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-subtle transition-colors duration-200 hover:text-primary">
+            <Facebook size={16} strokeWidth={1.8} />
+          </a>
+        </div>
       </div>
 
-      <div className="mx-auto mt-10 max-w-6xl border-t border-border/40 px-6 pt-6">
+      {/* Bottom line */}
+      <div className="mx-auto mt-6 max-w-6xl border-t border-border/40 px-6 pt-5">
         <p className="text-center text-xs text-subtle">
           &copy; {new Date().getFullYear()} {t.footer.copyright}
+          {" · "}
+          <a href="mailto:adapure@adapture.pt" className="transition-colors duration-200 hover:text-fg">adapure@adapture.pt</a>
+          {" · "}
+          Olhão, Portugal
         </p>
       </div>
     </footer>
