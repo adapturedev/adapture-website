@@ -2,7 +2,9 @@
 
 ## What We're Building
 
-[Placeholder for repo]
+Marketing website for **Flowstate Labs** — a digitalization and automation consultancy for SMBs. Static Next.js site deployed to GitHub Pages via `output: "export"`. The site serves as the company's public face: communicating services, building trust, and converting visitors into leads via a contact form.
+
+**Stack:** Next.js 16 (App Router, static export) · Tailwind CSS v4 · TypeScript · Space Grotesk + Inter fonts · Lucide icons · FormSubmit.co (contact) · GitHub Pages hosting.
 
 ## Key Principles
 
