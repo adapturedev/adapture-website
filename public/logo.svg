@@ -1,0 +1,24 @@
+<svg width="300" height="80" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .wm  { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -1px; fill: #111110; }
+      .wm2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -1px; fill: #888780; }
+    </style>
+  </defs>
+
+  <!-- Outer hex -->
+  <polygon points="30,6 60,23 60,57 30,74 0,57 0,23" fill="none" stroke="#111110" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Inner hex fill -->
+  <polygon points="30,15 51,27 51,53 30,65 9,53 9,27" fill="#1A5CFF" opacity="0.13" stroke="none"/>
+  <!-- Inner hex stroke -->
+  <polygon points="30,15 51,27 51,53 30,65 9,53 9,27" fill="none" stroke="#1A5CFF" stroke-width="1.2" stroke-linejoin="round" opacity="0.35"/>
+  <!-- Dot -->
+  <circle cx="30" cy="40" r="5" fill="#1A5CFF"/>
+
+  <!-- Separator -->
+  <line x1="72" y1="10" x2="72" y2="70" stroke="#E0DED8" stroke-width="1"/>
+
+  <!-- Wordmark -->
+  <text x="84" y="36" class="wm">Flowstate</text>
+  <text x="84" y="64" class="wm2">Labs</text>
+</svg>
