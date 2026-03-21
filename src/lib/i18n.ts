@@ -60,7 +60,7 @@ const translations = {
     },
     whyUs: {
       label: "Porquê nós",
-      heading: "Porquê a Flowstate Labs?",
+      heading: "Porquê a Adapture?",
       subtitle:
         "Não somos uma agência genérica. Cada solução é desenhada à medida dos seus workflows, objetivos e equipa.",
       points: [
@@ -124,16 +124,16 @@ const translations = {
         "Entraremos em contacto em breve. Obrigado por nos contactar.",
       successAction: "Enviar outra mensagem",
       error: "Algo correu mal. Por favor tente novamente.",
-      subject: "Novo contacto de flowstatelabs.ai",
+      subject: "Novo contacto de Adapture",
     },
     footer: {
       tagline: "Automatize melhor. Cresça mais rápido.",
-      copyright: "Flowstate Labs. Todos os direitos reservados.",
+      copyright: "Adapture. Todos os direitos reservados.",
     },
     meta: {
-      title: "Flowstate Labs — Automação com IA para PMEs",
+      title: "Adapture — Automação com IA para PMEs",
       description:
-        "A Flowstate Labs usa IA e automação para acelerar pequenas e médias empresas através de transformação digital e soluções personalizadas. Otimize as suas operações hoje.",
+        "A Adapture usa IA e automação para acelerar pequenas e médias empresas através de transformação digital e soluções personalizadas. Otimize as suas operações hoje.",
       ogDescription:
         "Usamos IA e automação para acelerar organizações através de transformação digital e soluções personalizadas.",
     },
@@ -194,7 +194,7 @@ const translations = {
     },
     whyUs: {
       label: "Why us",
-      heading: "Why Flowstate Labs?",
+      heading: "Why Adapture?",
       subtitle:
         "We're not a one-size-fits-all agency. Every solution is crafted around your actual workflows, goals, and team.",
       points: [
@@ -258,16 +258,16 @@ const translations = {
         "We'll get back to you soon. Thanks for reaching out.",
       successAction: "Send another message",
       error: "Something went wrong. Please try again.",
-      subject: "New inquiry from flowstatelabs.ai",
+      subject: "New inquiry from Adapture",
     },
     footer: {
       tagline: "Automate smarter. Grow faster.",
-      copyright: "Flowstate Labs. All rights reserved.",
+      copyright: "Adapture. All rights reserved.",
     },
     meta: {
-      title: "Flowstate Labs — AI-Powered Automation for SMBs",
+      title: "Adapture — AI-Powered Automation for SMBs",
       description:
-        "Flowstate Labs uses AI and automation to accelerate small-to-medium businesses through digital transformation and personalized solutions. Streamline your operations today.",
+        "Adapture uses AI and automation to accelerate small-to-medium businesses through digital transformation and personalized solutions. Streamline your operations today.",
       ogDescription:
         "We use AI and automation to accelerate organizations through digital transformation and personalized solutions.",
     },

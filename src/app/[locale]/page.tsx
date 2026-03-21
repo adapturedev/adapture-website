@@ -20,12 +20,12 @@ export async function generateMetadata({
   return {
     title: m.title,
     description: m.description,
-    metadataBase: new URL("https://flowstatelabs.ai"),
+    metadataBase: new URL("https://adapture.pt"),
     openGraph: {
       title: m.title,
       description: m.ogDescription,
-      url: `https://flowstatelabs.ai/${locale}`,
-      siteName: "Flowstate Labs",
+      url: `https://adapture.pt/${locale}`,
+      siteName: "Adapture",
       type: "website",
       locale: locale === "pt" ? "pt_PT" : "en_US",
     },
@@ -36,7 +36,7 @@ export async function generateMetadata({
     },
     robots: { index: true, follow: true },
     alternates: {
-      canonical: `https://flowstatelabs.ai/${locale}`,
+      canonical: `https://adapture.pt/${locale}`,
       languages: {
         pt: "/pt",
         en: "/en",

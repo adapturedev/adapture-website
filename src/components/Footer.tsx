@@ -9,7 +9,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         {/* Brand */}
         <div className="flex flex-col items-center gap-2 sm:items-start">
           <span className="font-heading text-lg font-bold tracking-tight text-fg">
-            Flowstate<span className="text-subtle"> Labs</span>
+            Adapture
           </span>
           <p className="text-sm text-subtle">
             {t.footer.tagline}

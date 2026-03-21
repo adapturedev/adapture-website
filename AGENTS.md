@@ -1,8 +1,8 @@
-# Agent Context - Flowstate Labs Website
+# Agent Context - Adapture Website
 
 ## What We're Building
 
-Marketing website for **Flowstate Labs** — a digitalization and automation consultancy for SMBs. Static Next.js site deployed to GitHub Pages via `output: "export"`. The site serves as the company's public face: communicating services, building trust, and converting visitors into leads via a contact form.
+Marketing website for **Adapture** — an AI-powered automation and digital transformation consultancy for SMBs. Static Next.js site deployed to GitHub Pages via `output: "export"`. The site serves as the company's public face: communicating services, building trust, and converting visitors into leads via a contact form.
 
 **Stack:** Next.js 16 (App Router, static export) · Tailwind CSS v4 · TypeScript · Space Grotesk + Inter fonts · Lucide icons · FormSubmit.co (contact) · GitHub Pages hosting.
 

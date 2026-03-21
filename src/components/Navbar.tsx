@@ -75,8 +75,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
             <circle cx="30" cy="40" r="5" fill="#1A5CFF" />
           </svg>
           <span className="font-heading text-lg font-bold tracking-tight text-fg">
-            Flowstate
-            <span className="text-subtle"> Labs</span>
+            Adapture
           </span>
         </a>
 
