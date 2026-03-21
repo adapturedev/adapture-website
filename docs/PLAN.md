@@ -1,8 +1,8 @@
-# Flowstate Labs — Website Plan
+# Adapture — Website Plan
 
 ## 1. Company Identity
 
-**Flowstate Labs** automates and accelerates small-to-medium companies and organizations through digitalization and personalized solutions — streamlining every task in the smartest way possible.
+**Adapture** uses AI and automation to accelerate small-to-medium companies and organizations through digital transformation and personalized solutions — streamlining every task in the smartest way possible.
 
 **Tagline ideas:** "Automate smarter. Grow faster." / "Your operations, on autopilot."
 
@@ -39,7 +39,7 @@
 ## 4. Page Structure
 
 ### 4.1 Navbar
-- Logo (SVG inline) + "Flowstate Labs" wordmark
+- Logo (SVG inline) + "Adapture" wordmark
 - Links: Services · About · Contact
 - Sticky on scroll, glass/blur backdrop
 - Mobile: hamburger menu
@@ -78,7 +78,7 @@
 - Logo + tagline
 - Quick links
 - Social links (LinkedIn, GitHub)
-- © 2026 Flowstate Labs
+- © 2026 Adapture
 
 ---
 
@@ -89,7 +89,7 @@
 1. **Semantic HTML** — use `<header>`, `<main>`, `<section>`, `<footer>`, `<article>`, `<nav>`. No div soup.
 2. **One `<h1>` per page** — the hero heading. Sections use `<h2>`, subsections `<h3>`.
 3. **Meta tags** — every page must have:
-   - `<title>` (50–60 chars, include "Flowstate Labs")
+   - `<title>` (50–60 chars, include "Adapture")
    - `<meta name="description">` (150–160 chars, action-oriented)
    - `<meta name="robots" content="index, follow">`
    - Open Graph: `og:title`, `og:description`, `og:image`, `og:url`, `og:type`

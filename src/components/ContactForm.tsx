@@ -18,7 +18,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
     const data = new FormData(form);
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/flowstatelabsai@gmail.com", {
+      const res = await fetch("https://formsubmit.co/ajax/adapture.ai@gmail.com", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: data,
