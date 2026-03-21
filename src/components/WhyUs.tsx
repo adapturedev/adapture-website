@@ -121,8 +121,8 @@ function NetworkViz() {
           ))}
 
           {/* Radar ping from hub */}
-          <circle cx={cx} cy={cy} r={26} fill="none" stroke="#1A5CFF" strokeWidth={1}>
-            <animate attributeName="r" values="26;80" dur="4s" repeatCount="indefinite" />
+          <circle cx={cx} cy={cy} r={28} fill="none" stroke="#1A5CFF" strokeWidth={1}>
+            <animate attributeName="r" values="28;80" dur="4s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.15;0" dur="4s" repeatCount="indefinite" />
             <animate attributeName="stroke-width" values="1;0.3" dur="4s" repeatCount="indefinite" />
           </circle>
@@ -137,15 +137,19 @@ function NetworkViz() {
             <animate attributeName="opacity" values="0.07;0.03;0.07" dur="4s" repeatCount="indefinite" />
           </circle>
 
-          {/* Hub circle */}
-          <circle cx={cx} cy={cy + 2} r={26} fill="#1A5CFF" opacity={0.12} />
-          <circle cx={cx} cy={cy} r={26} fill="#1A5CFF" />
-
-          {/* Hexagon mark inside hub */}
-          <polygon
-            points={`${cx},${cy - 13} ${cx + 11.3},${cy - 6.5} ${cx + 11.3},${cy + 6.5} ${cx},${cy + 13} ${cx - 11.3},${cy + 6.5} ${cx - 11.3},${cy - 6.5}`}
-            fill="white" opacity={0.9}
-          />
+          {/* Hub — exact logo mark */}
+          <g transform={`translate(${cx},${cy}) scale(0.8)`}>
+            {/* Background fill (so orbits don't bleed through) */}
+            <polygon points="0,-34 30,-17 30,17 0,34 -30,17 -30,-17" style={{ fill: cardColor }} />
+            {/* Outer hex stroke */}
+            <polygon points="0,-34 30,-17 30,17 0,34 -30,17 -30,-17" fill="none" style={{ stroke: 'var(--color-fg)' }} strokeWidth={2.5} strokeLinejoin="round" />
+            {/* Inner hex fill */}
+            <polygon points="0,-25 21,-13 21,13 0,25 -21,13 -21,-13" fill="#1A5CFF" opacity={0.15} />
+            {/* Inner hex stroke */}
+            <polygon points="0,-25 21,-13 21,13 0,25 -21,13 -21,-13" fill="none" stroke="#1A5CFF" strokeWidth={1.5} strokeLinejoin="round" opacity={0.4} />
+            {/* Center dot */}
+            <circle r={5} fill="#1A5CFF" />
+          </g>
         </svg>
 
         {/* Ambient glow behind viz */}
