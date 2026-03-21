@@ -2,7 +2,8 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Flowstate Labs — AI-Powered Automation for SMBs";
+export const dynamic = "force-static";
+export const alt = "Adapture — AI-Powered Automation for SMBs";
 
 export default function OGImage() {
   return new ImageResponse(
@@ -97,17 +98,7 @@ export default function OGImage() {
               letterSpacing: "-1px",
             }}
           >
-            Flowstate
-          </span>
-          <span
-            style={{
-              fontSize: 56,
-              fontWeight: 700,
-              color: "#71716E",
-              letterSpacing: "-1px",
-            }}
-          >
-            Labs
+            Adapture
           </span>
         </div>
 
@@ -132,7 +123,7 @@ export default function OGImage() {
             letterSpacing: "1px",
           }}
         >
-          flowstatelabs.pt
+          adapture.pt
         </div>
       </div>
     ),

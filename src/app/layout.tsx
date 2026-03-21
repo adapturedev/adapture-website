@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://flowstatelabs.pt"),
+  metadataBase: new URL("https://adapture.pt"),
   robots: { index: true, follow: true },
 };
 
@@ -40,8 +40,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              name: "Flowstate Labs",
-              url: "https://flowstatelabs.pt",
+              name: "Adapture",
+              url: "https://adapture.pt",
               description:
                 "AI-powered automation and digital transformation for small and medium businesses. We streamline operations with intelligent workflows, custom integrations, and data analytics.",
               knowsAbout: [
@@ -69,8 +69,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Flowstate Labs",
-              url: "https://flowstatelabs.pt",
+              name: "Adapture",
+              url: "https://adapture.pt",
               inLanguage: ["pt", "en"],
             }),
           }}
