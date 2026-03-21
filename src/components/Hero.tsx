@@ -1,9 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import FadeIn from "./FadeIn";
+import TextReveal from "./TextReveal";
+import MouseGlow from "./MouseGlow";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-dvh items-center justify-center overflow-hidden">
+    <section className="noise-overlay relative flex min-h-dvh items-center justify-center overflow-hidden">
       {/* ── Animated background ──────────────────────── */}
       <div className="pointer-events-none absolute inset-0">
         {/* Gradient orbs */}
@@ -27,6 +29,9 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-surface to-transparent" />
       </div>
 
+      {/* Mouse-tracking radial gradient spotlight */}
+      <MouseGlow />
+
       <div className="relative z-10 mx-auto max-w-5xl px-6 pt-24 pb-16 text-center">
         <FadeIn animation="scale-in">
           <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-border bg-white/80 px-5 py-2 text-[13px] font-medium tracking-wide text-muted backdrop-blur-sm">
@@ -38,15 +43,18 @@ export default function Hero() {
           </div>
         </FadeIn>
 
-        <FadeIn animation="fade-up" delay={100}>
-          <h1 className="mb-8 text-5xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-            Automate smarter.
-            <br />
-            <span className="text-gradient">Grow faster.</span>
-          </h1>
-        </FadeIn>
+        <h1 className="mb-8 text-5xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+          <TextReveal text="Automate smarter." stagger={90} />
+          <br />
+          <TextReveal
+            text="Grow faster."
+            startDelay={450}
+            stagger={90}
+            gradient
+          />
+        </h1>
 
-        <FadeIn animation="fade-up" delay={250}>
+        <FadeIn animation="fade-up" delay={900}>
           <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
             We help small and medium companies streamline operations through
             digitalization and personalized automation solutions — so you can
@@ -54,7 +62,7 @@ export default function Hero() {
           </p>
         </FadeIn>
 
-        <FadeIn animation="fade-up" delay={400}>
+        <FadeIn animation="fade-up" delay={1100}>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#contact"

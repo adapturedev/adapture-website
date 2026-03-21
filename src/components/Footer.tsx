@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-6 sm:flex-row sm:justify-between">
         {/* Brand */}
         <div className="flex flex-col items-center gap-2 sm:items-start">
-          <span className="font-heading text-lg font-extrabold tracking-tight text-dark">
+          <span className="font-heading text-lg font-bold tracking-tight text-dark">
             Flowstate<span className="text-subtle"> Labs</span>
           </span>
           <p className="text-sm text-subtle">

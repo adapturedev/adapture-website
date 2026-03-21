@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Syne, Inter } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 
-const syne = Syne({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-syne",
+  variable: "--font-space",
   display: "swap",
-  weight: ["700", "800"],
+  weight: ["500", "600", "700"],
 });
 
 const inter = Inter({
@@ -50,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

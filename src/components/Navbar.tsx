@@ -61,7 +61,7 @@ export default function Navbar() {
             />
             <circle cx="30" cy="40" r="5" fill="#1A5CFF" />
           </svg>
-          <span className="font-heading text-lg font-extrabold tracking-tight text-dark">
+          <span className="font-heading text-lg font-bold tracking-tight text-dark">
             Flowstate
             <span className="text-subtle"> Labs</span>
           </span>

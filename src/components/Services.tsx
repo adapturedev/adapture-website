@@ -1,5 +1,6 @@
 import { Workflow, Sparkles, Plug, BarChart3 } from "lucide-react";
 import FadeIn from "./FadeIn";
+import TiltCard from "./TiltCard";
 import type { ReactNode } from "react";
 
 interface ServiceCardProps {
@@ -12,17 +13,19 @@ interface ServiceCardProps {
 function ServiceCard({ icon, title, description, delay }: ServiceCardProps) {
   return (
     <FadeIn animation="fade-up" delay={delay}>
-      <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/[0.08]">
-        {/* Hover gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        <div className="relative">
-          <div className="mb-6 inline-flex rounded-2xl bg-primary-light p-3.5 text-primary transition-colors duration-300 group-hover:bg-primary-medium">
-            {icon}
+      <TiltCard className="h-full">
+        <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-white p-8 transition-all duration-500 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/[0.08]">
+          {/* Hover gradient */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <div className="relative">
+            <div className="mb-6 inline-flex rounded-2xl bg-primary-light p-3.5 text-primary transition-colors duration-300 group-hover:bg-primary-medium">
+              {icon}
+            </div>
+            <h3 className="mb-3 text-lg font-bold tracking-tight">{title}</h3>
+            <p className="text-[15px] leading-relaxed text-muted">{description}</p>
           </div>
-          <h3 className="mb-3 text-lg font-bold tracking-tight">{title}</h3>
-          <p className="text-[15px] leading-relaxed text-muted">{description}</p>
         </div>
-      </div>
+      </TiltCard>
     </FadeIn>
   );
 }
