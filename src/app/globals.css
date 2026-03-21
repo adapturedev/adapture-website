@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Colors */
   --color-primary: #1A5CFF;
@@ -12,6 +14,11 @@
   --color-surface: #FAFAF8;
   --color-white: #FFFFFF;
 
+  /* Semantic colors — auto-switch in dark mode */
+  --color-card: #FFFFFF;
+  --color-fg: #111110;
+  --color-contrast: #111110;
+
   /* Fonts — reference next/font CSS variables */
   --font-heading: var(--font-space), "Space Grotesk", system-ui, sans-serif;
   --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
@@ -19,6 +26,21 @@
   /* Animation */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Dark mode overrides ──────────────────────────────── */
+
+.dark {
+  --color-surface: #0C0C0B;
+  --color-card: #181816;
+  --color-fg: #EDEDEC;
+  --color-contrast: #181816;
+  --color-muted: #A1A09C;
+  --color-subtle: #6E6D6A;
+  --color-border: #2A2A27;
+  --color-primary-light: rgba(26, 92, 255, 0.12);
+  --color-primary-medium: rgba(26, 92, 255, 0.20);
+  color-scheme: dark;
 }
 
 /* ── Base ────────────────────────────────────────────── */
@@ -31,7 +53,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  color: var(--color-dark);
+  color: var(--color-fg);
   background-color: var(--color-surface);
 }
 
@@ -46,7 +68,11 @@ h1, h2, h3, h4 {
 
 ::selection {
   background: rgba(26, 92, 255, 0.15);
-  color: #111110;
+  color: var(--color-fg);
+}
+
+.dark ::selection {
+  background: rgba(26, 92, 255, 0.30);
 }
 
 /* ── Scroll-reveal animation ─────────────────────────── */
@@ -178,6 +204,10 @@ h1, h2, h3, h4 {
   background-size: 24px 24px;
 }
 
+.dark .bg-dot-pattern {
+  background-image: radial-gradient(circle, #2A2A27 1px, transparent 1px);
+}
+
 /* ── Noise texture overlay ───────────────────────────── */
 
 .noise-overlay::after {
@@ -185,7 +215,7 @@ h1, h2, h3, h4 {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 256px 256px;

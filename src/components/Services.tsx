@@ -15,7 +15,7 @@ function ServiceCard({ icon, title, description, delay }: ServiceCardProps) {
   return (
     <FadeIn animation="fade-up" delay={delay}>
       <TiltCard className="h-full">
-        <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-white p-8 transition-all duration-500 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/[0.08]">
+        <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-card p-8 transition-all duration-500 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/[0.08]">
           {/* Hover gradient */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/[0.04] via-transparent to-primary/[0.02] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           <div className="relative">

@@ -20,7 +20,7 @@ function Step({ step, icon, title, description, delay }: StepProps) {
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-transform duration-300 hover:scale-105">
             {icon}
           </div>
-          <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full bg-dark text-xs font-bold text-white">
+          <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full bg-fg text-xs font-bold text-card">
             {step}
           </span>
         </div>

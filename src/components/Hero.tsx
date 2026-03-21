@@ -37,7 +37,7 @@ export default function Hero({ locale }: { locale: Locale }) {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 pt-24 pb-16 text-center">
         <FadeIn animation="scale-in">
-          <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-border bg-white/80 px-5 py-2 text-[13px] font-medium tracking-wide text-muted backdrop-blur-sm">
+          <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-border bg-card/80 px-5 py-2 text-[13px] font-medium tracking-wide text-muted backdrop-blur-sm">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
@@ -67,7 +67,7 @@ export default function Hero({ locale }: { locale: Locale }) {
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#contact"
-              className="btn-glow group inline-flex items-center gap-2.5 rounded-full bg-dark px-8 py-4 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-primary hover:shadow-xl hover:shadow-primary/20"
+              className="btn-glow group inline-flex items-center gap-2.5 rounded-full bg-fg px-8 py-4 text-[15px] font-semibold text-card transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-xl hover:shadow-primary/20"
             >
               {t.cta}
               <ArrowRight
@@ -77,7 +77,7 @@ export default function Hero({ locale }: { locale: Locale }) {
             </a>
             <a
               href="#services"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-white/60 px-8 py-4 text-[15px] font-semibold text-dark backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-white hover:shadow-lg hover:shadow-primary/5"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-8 py-4 text-[15px] font-semibold text-fg backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-card hover:shadow-lg hover:shadow-primary/5"
             >
               {t.secondary}
             </a>

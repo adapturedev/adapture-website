@@ -6,7 +6,7 @@ export default function CTA({ locale }: { locale: Locale }) {
   const t = getTranslations(locale).cta;
 
   return (
-    <section id="contact" className="noise-overlay relative overflow-hidden bg-dark py-28 text-white">
+    <section id="contact" className="noise-overlay relative overflow-hidden bg-contrast py-28 text-white">
       {/* Gradient orbs */}
       <div className="pointer-events-none absolute -left-40 top-0 h-[400px] w-[400px] rounded-full bg-primary/10 blur-[120px]" />
       <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-primary/[0.08] blur-[120px]" />

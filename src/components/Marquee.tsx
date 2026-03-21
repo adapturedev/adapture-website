@@ -6,11 +6,11 @@ export default function Marquee({ locale }: { locale: Locale }) {
   const doubled = [...items, ...items];
 
   return (
-    <div className="relative overflow-hidden border-y border-border/50 bg-white py-5">
+    <div className="relative overflow-hidden border-y border-border/50 bg-card py-5">
       {/* Left fade */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-card to-transparent" />
       {/* Right fade */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-card to-transparent" />
 
       <div className="marquee-track flex w-max gap-8">
         {doubled.map((item, i) => (

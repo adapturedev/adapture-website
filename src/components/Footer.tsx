@@ -5,11 +5,11 @@ export default function Footer({ locale }: { locale: Locale }) {
   const t = getTranslations(locale);
 
   return (
-    <footer className="border-t border-border/60 bg-white py-14">
+    <footer className="border-t border-border/60 bg-card py-14">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-6 sm:flex-row sm:justify-between">
         {/* Brand */}
         <div className="flex flex-col items-center gap-2 sm:items-start">
-          <span className="font-heading text-lg font-bold tracking-tight text-dark">
+          <span className="font-heading text-lg font-bold tracking-tight text-fg">
             Flowstate<span className="text-subtle"> Labs</span>
           </span>
           <p className="text-sm text-subtle">
@@ -19,13 +19,13 @@ export default function Footer({ locale }: { locale: Locale }) {
 
         {/* Links */}
         <nav className="flex gap-7 text-sm">
-          <a href="#services" className="text-subtle transition-colors duration-200 hover:text-dark">
+          <a href="#services" className="text-subtle transition-colors duration-200 hover:text-fg">
             {t.nav.services}
           </a>
-          <a href="#why-us" className="text-subtle transition-colors duration-200 hover:text-dark">
+          <a href="#why-us" className="text-subtle transition-colors duration-200 hover:text-fg">
             {t.nav.about}
           </a>
-          <a href="#contact" className="text-subtle transition-colors duration-200 hover:text-dark">
+          <a href="#contact" className="text-subtle transition-colors duration-200 hover:text-fg">
             {t.nav.contact}
           </a>
         </nav>

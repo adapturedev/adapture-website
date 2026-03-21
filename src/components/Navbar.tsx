@@ -1,20 +1,28 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, Moon, Sun } from "lucide-react";
 import { getTranslations, type Locale } from "@/lib/i18n";
 
 export default function Navbar({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [dark, setDark] = useState(false);
   const t = getTranslations(locale).nav;
   const altLocale: Locale = locale === "pt" ? "en" : "pt";
 
   useEffect(() => {
+    setDark(document.documentElement.classList.contains("dark"));
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle("dark");
+    setDark(isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }
 
   const links = [
     { label: t.services, href: "#services" },
@@ -26,7 +34,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-500 ${
         scrolled
-          ? "border-b border-border/50 bg-white/70 shadow-sm backdrop-blur-xl"
+          ? "border-b border-border/50 bg-card/70 shadow-sm backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
@@ -45,7 +53,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
             <polygon
               points="30,6 60,23 60,57 30,74 0,57 0,23"
               fill="none"
-              stroke="#111110"
+              stroke="currentColor"
               strokeWidth="2.5"
               strokeLinejoin="round"
             />
@@ -64,7 +72,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
             />
             <circle cx="30" cy="40" r="5" fill="#1A5CFF" />
           </svg>
-          <span className="font-heading text-lg font-bold tracking-tight text-dark">
+          <span className="font-heading text-lg font-bold tracking-tight text-fg">
             Flowstate
             <span className="text-subtle"> Labs</span>
           </span>
@@ -76,7 +84,7 @@ export default function Navbar({ locale }: { locale: Locale }) {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="relative text-[13px] font-medium tracking-wide text-muted uppercase transition-colors duration-300 hover:text-dark after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                className="relative text-[13px] font-medium tracking-wide text-muted uppercase transition-colors duration-300 hover:text-fg after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 {l.label}
               </a>
@@ -86,17 +94,27 @@ export default function Navbar({ locale }: { locale: Locale }) {
           <li>
             <a
               href={`/${altLocale}`}
-              className="inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide text-muted uppercase transition-colors duration-300 hover:text-dark"
+              className="inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide text-muted uppercase transition-colors duration-300 hover:text-fg"
               aria-label={altLocale === "en" ? "Switch to English" : "Mudar para Português"}
             >
               <Globe size={14} strokeWidth={1.8} />
               {altLocale.toUpperCase()}
             </a>
           </li>
+          {/* Theme toggle */}
+          <li>
+            <button
+              onClick={toggleTheme}
+              className="inline-flex items-center justify-center rounded-full p-2 text-muted transition-colors duration-300 hover:bg-primary-light hover:text-fg"
+              aria-label={dark ? "Light mode" : "Dark mode"}
+            >
+              {dark ? <Sun size={16} strokeWidth={1.8} /> : <Moon size={16} strokeWidth={1.8} />}
+            </button>
+          </li>
           <li>
             <a
               href="#contact"
-              className="btn-glow rounded-full bg-dark px-6 py-2.5 text-[13px] font-semibold tracking-wide text-white transition-all duration-300 hover:bg-primary hover:shadow-lg hover:shadow-primary/25"
+              className="btn-glow rounded-full bg-fg px-6 py-2.5 text-[13px] font-semibold tracking-wide text-card transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25"
             >
               {t.cta}
             </a>
@@ -116,16 +134,16 @@ export default function Navbar({ locale }: { locale: Locale }) {
       {/* Mobile menu */}
       <div
         className={`overflow-hidden transition-all duration-300 md:hidden ${
-          open ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="border-t border-border/50 bg-white/90 px-6 py-6 backdrop-blur-xl">
+        <div className="border-t border-border/50 bg-card/90 px-6 py-6 backdrop-blur-xl">
           <ul className="flex flex-col gap-4">
             {links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="text-sm font-medium text-muted transition-colors hover:text-dark"
+                  className="text-sm font-medium text-muted transition-colors hover:text-fg"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}
@@ -135,16 +153,25 @@ export default function Navbar({ locale }: { locale: Locale }) {
             <li>
               <a
                 href={`/${altLocale}`}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-dark"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-fg"
               >
                 <Globe size={14} strokeWidth={1.8} />
                 {altLocale === "en" ? "English" : "Português"}
               </a>
             </li>
+            <li>
+              <button
+                onClick={toggleTheme}
+                className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-fg"
+              >
+                {dark ? <Sun size={16} strokeWidth={1.8} /> : <Moon size={16} strokeWidth={1.8} />}
+                {dark ? "Light mode" : "Dark mode"}
+              </button>
+            </li>
             <li className="pt-2">
               <a
                 href="#contact"
-                className="inline-block rounded-full bg-dark px-6 py-2.5 text-sm font-semibold text-white"
+                className="inline-block rounded-full bg-fg px-6 py-2.5 text-sm font-semibold text-card"
                 onClick={() => setOpen(false)}
               >
                 {t.cta}

@@ -28,10 +28,10 @@ export default function RootLayout({
   return (
     <html lang="pt" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
-        {/* Set lang based on URL path */}
+        {/* Set lang and theme before paint */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `if(location.pathname.startsWith('/en'))document.documentElement.lang='en';`,
+            __html: `(function(){var d=document.documentElement;if(location.pathname.startsWith('/en'))d.lang='en';var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))d.classList.add('dark')})();`,
           }}
         />
         <script

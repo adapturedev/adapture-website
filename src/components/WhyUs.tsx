@@ -33,6 +33,9 @@ function NetworkViz() {
     `M${cx + r},${cy} A${r},${r} 0 1,1 ${cx - r},${cy} A${r},${r} 0 1,1 ${cx + r},${cy}`;
   const spokeAngles = [0, 60, 120, 180, 240, 300];
 
+  const borderColor = 'var(--color-border)';
+  const cardColor = 'var(--color-card)';
+
   return (
     <FadeIn animation="slide-left">
       <div className="relative mx-auto w-full max-w-[420px]">
@@ -51,16 +54,17 @@ function NetworkViz() {
                 x1={cx} y1={cy}
                 x2={cx + Math.cos(rad) * (r2 + 20)}
                 y2={cy + Math.sin(rad) * (r2 + 20)}
-                stroke="#E8E6E1" strokeWidth={0.8}
+                strokeWidth={0.8}
                 strokeDasharray="3 8" opacity={0.4}
+                style={{ stroke: borderColor }}
               />
             );
           })}
 
           {/* Orbit rings */}
-          <use href="#orbit-inner" stroke="#E8E6E1" strokeWidth={1} strokeDasharray="4 8" opacity={0.6} />
-          <use href="#orbit-outer" stroke="#E8E6E1" strokeWidth={1} strokeDasharray="4 8" opacity={0.5} />
-          <circle cx={cx} cy={cy} r={r2 + 30} stroke="#E8E6E1" strokeWidth={0.5} strokeDasharray="2 10" opacity={0.3} />
+          <use href="#orbit-inner" strokeWidth={1} strokeDasharray="4 8" opacity={0.6} style={{ stroke: borderColor }} />
+          <use href="#orbit-outer" strokeWidth={1} strokeDasharray="4 8" opacity={0.5} style={{ stroke: borderColor }} />
+          <circle cx={cx} cy={cy} r={r2 + 30} strokeWidth={0.5} strokeDasharray="2 10" opacity={0.3} style={{ stroke: borderColor }} />
 
           {/* Fast data pulses — inner orbit */}
           {[0, -3].map((begin, i) => (
@@ -86,7 +90,7 @@ function NetworkViz() {
               <animateMotion dur="30s" repeatCount="indefinite" begin={`${(-30 / 3) * i}s`}>
                 <mpath href="#orbit-inner" />
               </animateMotion>
-              <circle r={16} fill="white" stroke="#E8E6E1" strokeWidth={1.5} />
+              <circle r={16} strokeWidth={1.5} style={{ fill: cardColor, stroke: borderColor }} />
               {i === 0 && (
                 <circle r={11} fill="none" stroke="#1A5CFF" strokeWidth={1.5} opacity={0.25} strokeDasharray="69.1" strokeDashoffset={69.1} strokeLinecap="round">
                   <animate attributeName="stroke-dashoffset" values="69.1;0;69.1" dur="4s" repeatCount="indefinite" />
@@ -104,7 +108,7 @@ function NetworkViz() {
               <animateMotion dur="45s" repeatCount="indefinite" begin={`${(-45 / 4) * i}s`} keyPoints="1;0" keyTimes="0;1" calcMode="linear">
                 <mpath href="#orbit-outer" />
               </animateMotion>
-              <circle r={13} fill="white" stroke="#E8E6E1" strokeWidth={1.5} />
+              <circle r={13} strokeWidth={1.5} style={{ fill: cardColor, stroke: borderColor }} />
               {i === 2 && (
                 <circle r={9} fill="none" stroke="#1A5CFF" strokeWidth={1.2} opacity={0.2} strokeDasharray="56.5" strokeDashoffset={56.5} strokeLinecap="round">
                   <animate attributeName="stroke-dashoffset" values="56.5;0;56.5" dur="5s" repeatCount="indefinite" />
@@ -161,7 +165,7 @@ export default function WhyUs({ locale }: { locale: Locale }) {
   const t = getTranslations(locale).whyUs;
 
   return (
-    <section id="why-us" className="relative overflow-hidden bg-white py-28">
+    <section id="why-us" className="relative overflow-hidden bg-card py-28">
       {/* Subtle background accent */}
       <div className="pointer-events-none absolute -right-60 top-0 h-[500px] w-[500px] rounded-full bg-primary/[0.03] blur-[80px]" />
 

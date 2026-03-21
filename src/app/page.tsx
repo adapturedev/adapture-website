@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export default function RootRedirect() {
   useEffect(() => {
     const lang = navigator.language ?? "";
-    const locale = lang.startsWith("pt") ? "pt" : "en";
+    const locale = lang.startsWith("en") ? "en" : "pt";
     window.location.replace(`/${locale}`);
   }, []);
 
