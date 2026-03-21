@@ -16,32 +16,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Flowstate Labs — Automate Smarter. Grow Faster.",
-  description:
-    "Flowstate Labs automates and accelerates small-to-medium companies through digitalization and personalized solutions. Streamline your operations today.",
   metadataBase: new URL("https://flowstatelabs.ai"),
-  openGraph: {
-    title: "Flowstate Labs — Automate Smarter. Grow Faster.",
-    description:
-      "We automate and accelerate organizations through digitalization and personalized solutions.",
-    url: "https://flowstatelabs.ai",
-    siteName: "Flowstate Labs",
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Flowstate Labs — Automate Smarter. Grow Faster.",
-    description:
-      "We automate and accelerate organizations through digitalization and personalized solutions.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: "https://flowstatelabs.ai",
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -50,8 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="pt" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
+        {/* Set lang based on URL path */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(location.pathname.startsWith('/en'))document.documentElement.lang='en';`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

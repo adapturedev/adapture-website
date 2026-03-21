@@ -1,6 +1,9 @@
 import { Linkedin, Github } from "lucide-react";
+import { getTranslations, type Locale } from "@/lib/i18n";
 
-export default function Footer() {
+export default function Footer({ locale }: { locale: Locale }) {
+  const t = getTranslations(locale);
+
   return (
     <footer className="border-t border-border/60 bg-white py-14">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-6 sm:flex-row sm:justify-between">
@@ -10,20 +13,20 @@ export default function Footer() {
             Flowstate<span className="text-subtle"> Labs</span>
           </span>
           <p className="text-sm text-subtle">
-            Automate smarter. Grow faster.
+            {t.footer.tagline}
           </p>
         </div>
 
         {/* Links */}
         <nav className="flex gap-7 text-sm">
           <a href="#services" className="text-subtle transition-colors duration-200 hover:text-dark">
-            Services
+            {t.nav.services}
           </a>
           <a href="#why-us" className="text-subtle transition-colors duration-200 hover:text-dark">
-            About
+            {t.nav.about}
           </a>
           <a href="#contact" className="text-subtle transition-colors duration-200 hover:text-dark">
-            Contact
+            {t.nav.contact}
           </a>
         </nav>
 
@@ -52,7 +55,7 @@ export default function Footer() {
 
       <div className="mx-auto mt-10 max-w-6xl border-t border-border/40 px-6 pt-6">
         <p className="text-center text-xs text-subtle">
-          &copy; {new Date().getFullYear()} Flowstate Labs. All rights reserved.
+          &copy; {new Date().getFullYear()} {t.footer.copyright}
         </p>
       </div>
     </footer>

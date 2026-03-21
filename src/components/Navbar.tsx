@@ -1,11 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
+import { getTranslations, type Locale } from "@/lib/i18n";
 
-export default function Navbar() {
+export default function Navbar({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const t = getTranslations(locale).nav;
+  const altLocale: Locale = locale === "pt" ? "en" : "pt";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -14,9 +17,9 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: "Services", href: "#services" },
-    { label: "About", href: "#why-us" },
-    { label: "Contact", href: "#contact" },
+    { label: t.services, href: "#services" },
+    { label: t.about, href: "#why-us" },
+    { label: t.contact, href: "#contact" },
   ];
 
   return (
@@ -79,12 +82,23 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+          {/* Language switcher */}
+          <li>
+            <a
+              href={`/${altLocale}`}
+              className="inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide text-muted uppercase transition-colors duration-300 hover:text-dark"
+              aria-label={altLocale === "en" ? "Switch to English" : "Mudar para Português"}
+            >
+              <Globe size={14} strokeWidth={1.8} />
+              {altLocale.toUpperCase()}
+            </a>
+          </li>
           <li>
             <a
               href="#contact"
               className="btn-glow rounded-full bg-dark px-6 py-2.5 text-[13px] font-semibold tracking-wide text-white transition-all duration-300 hover:bg-primary hover:shadow-lg hover:shadow-primary/25"
             >
-              Get in touch
+              {t.cta}
             </a>
           </li>
         </ul>
@@ -118,13 +132,22 @@ export default function Navbar() {
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href={`/${altLocale}`}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-dark"
+              >
+                <Globe size={14} strokeWidth={1.8} />
+                {altLocale === "en" ? "English" : "Português"}
+              </a>
+            </li>
             <li className="pt-2">
               <a
                 href="#contact"
                 className="inline-block rounded-full bg-dark px-6 py-2.5 text-sm font-semibold text-white"
                 onClick={() => setOpen(false)}
               >
-                Get in touch
+                {t.cta}
               </a>
             </li>
           </ul>

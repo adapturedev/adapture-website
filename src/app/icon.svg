@@ -1,0 +1,10 @@
+<svg width="64" height="64" viewBox="-4 0 68 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer hex -->
+  <polygon points="30,6 60,23 60,57 30,74 0,57 0,23" fill="#111110" stroke="none"/>
+  <!-- Inner hex fill -->
+  <polygon points="30,15 51,27 51,53 30,65 9,53 9,27" fill="#1A5CFF" opacity="0.15"/>
+  <!-- Inner hex stroke -->
+  <polygon points="30,15 51,27 51,53 30,65 9,53 9,27" fill="none" stroke="#1A5CFF" stroke-width="1.5" stroke-linejoin="round" opacity="0.4"/>
+  <!-- Dot -->
+  <circle cx="30" cy="40" r="6" fill="#1A5CFF"/>
+</svg>

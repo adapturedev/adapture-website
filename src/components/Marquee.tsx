@@ -1,15 +1,7 @@
-const items = [
-  "Process Automation",
-  "Digital Transformation",
-  "Cloud Solutions",
-  "Custom Integrations",
-  "Data & Analytics",
-  "API Development",
-  "Workflow Design",
-  "Smart Dashboards",
-];
+import { getTranslations, type Locale } from "@/lib/i18n";
 
-export default function Marquee() {
+export default function Marquee({ locale }: { locale: Locale }) {
+  const items = getTranslations(locale).marquee;
   // Duplicate the list for seamless infinite scroll
   const doubled = [...items, ...items];
 

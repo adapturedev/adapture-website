@@ -1,25 +1,18 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Services from "@/components/Services";
-import WhyUs from "@/components/WhyUs";
-import HowWeWork from "@/components/HowWeWork";
-import CTA from "@/components/CTA";
-import Footer from "@/components/Footer";
+"use client";
 
-export default function Home() {
+import { useEffect } from "react";
+
+/** Root page — detects browser language and redirects to /pt or /en. */
+export default function RootRedirect() {
+  useEffect(() => {
+    const lang = navigator.language ?? "";
+    const locale = lang.startsWith("pt") ? "pt" : "en";
+    window.location.replace(`/${locale}`);
+  }, []);
+
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <Marquee />
-        <Services />
-        <WhyUs />
-        <HowWeWork />
-        <CTA />
-      </main>
-      <Footer />
-    </>
+    <div className="flex min-h-dvh items-center justify-center">
+      <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+    </div>
   );
 }

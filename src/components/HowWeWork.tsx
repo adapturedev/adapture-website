@@ -1,5 +1,6 @@
 import { Search, PenTool, Rocket } from "lucide-react";
 import FadeIn from "./FadeIn";
+import { getTranslations, type Locale } from "@/lib/i18n";
 import type { ReactNode } from "react";
 
 interface StepProps {
@@ -30,49 +31,46 @@ function Step({ step, icon, title, description, delay }: StepProps) {
   );
 }
 
-export default function HowWeWork() {
+const stepIcons: ReactNode[] = [
+  <Search key="s" size={24} strokeWidth={1.8} />,
+  <PenTool key="p" size={24} strokeWidth={1.8} />,
+  <Rocket key="r" size={24} strokeWidth={1.8} />,
+];
+
+export default function HowWeWork({ locale }: { locale: Locale }) {
+  const t = getTranslations(locale).howWeWork;
+
   return (
     <section className="relative py-28">
       <div className="mx-auto max-w-5xl px-6">
         <FadeIn animation="fade-up">
           <div className="mb-16 text-center">
             <p className="mb-4 text-[13px] font-semibold uppercase tracking-[0.15em] text-primary">
-              Process
+              {t.label}
             </p>
-            <h2 className="mb-5 text-3xl sm:text-4xl lg:text-5xl">How we work</h2>
+            <h2 className="mb-5 text-3xl sm:text-4xl lg:text-5xl">{t.heading}</h2>
             <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted">
-              A straightforward process designed to deliver real results, fast.
+              {t.subtitle}
             </p>
           </div>
         </FadeIn>
 
         <div className="relative grid gap-12 sm:grid-cols-3">
           {/* Connector line (desktop only) */}
-          <div className="absolute left-[16.67%] right-[16.67%] top-8 hidden h-px sm:block">
-            <div className="h-full w-full bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
+          <div className="absolute left-[16.67%] right-[16.67%] top-8 hidden sm:block">
+            <div className="h-px w-full bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
           </div>
 
-          <Step
-            step={1}
-            icon={<Search size={24} strokeWidth={1.8} />}
-            title="Discover"
-            description="We map your workflows, pain points, and goals to understand where automation delivers the most value."
-            delay={0}
-          />
-          <Step
-            step={2}
-            icon={<PenTool size={24} strokeWidth={1.8} />}
-            title="Design"
-            description="We architect a tailored solution — lean, practical, and aligned with your existing tools."
-            delay={150}
-          />
-          <Step
-            step={3}
-            icon={<Rocket size={24} strokeWidth={1.8} />}
-            title="Deliver"
-            description="We implement, test, and deploy — then stick around to make sure everything runs smoothly."
-            delay={300}
-          />
+          {t.steps.map((step, i) => (
+            <Step
+              key={step.title}
+              step={i + 1}
+              icon={stepIcons[i]}
+              title={step.title}
+              description={step.description}
+              delay={i * 150}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -2,27 +2,30 @@ import { ArrowRight } from "lucide-react";
 import FadeIn from "./FadeIn";
 import TextReveal from "./TextReveal";
 import MouseGlow from "./MouseGlow";
+import { getTranslations, type Locale } from "@/lib/i18n";
 
-export default function Hero() {
+export default function Hero({ locale }: { locale: Locale }) {
+  const t = getTranslations(locale).hero;
   return (
     <section className="noise-overlay relative flex min-h-dvh items-center justify-center overflow-hidden">
       {/* ── Animated background ──────────────────────── */}
       <div className="pointer-events-none absolute inset-0">
         {/* Gradient orbs */}
         <div
-          className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary/[0.07] blur-[100px]"
+          className="absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary/[0.08] blur-[120px]"
           style={{ animation: "pulse-glow 8s ease-in-out infinite" }}
         />
         <div
-          className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-primary/[0.05] blur-[80px]"
+          className="absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-primary/[0.06] blur-[100px]"
           style={{ animation: "pulse-glow 10s ease-in-out infinite 2s" }}
         />
         <div
-          className="absolute left-1/2 top-1/3 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-primary/[0.04] blur-[60px]"
+          className="absolute left-1/2 top-1/3 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-primary/[0.05] blur-[80px]"
           style={{ animation: "float 12s ease-in-out infinite 1s" }}
         />
+
         {/* Dot grid overlay */}
-        <div className="bg-dot-pattern absolute inset-0 opacity-30" />
+        <div className="bg-dot-pattern absolute inset-0 opacity-20" />
         {/* Top fade */}
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-surface to-transparent" />
         {/* Bottom fade */}
@@ -39,15 +42,15 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
             </span>
-            Automation &amp; Digital Transformation
+            {t.badge}
           </div>
         </FadeIn>
 
         <h1 className="mb-8 text-5xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-          <TextReveal text="Automate smarter." stagger={90} />
+          <TextReveal text={t.heading1} stagger={90} />
           <br />
           <TextReveal
-            text="Grow faster."
+            text={t.heading2}
             startDelay={450}
             stagger={90}
             gradient
@@ -56,9 +59,7 @@ export default function Hero() {
 
         <FadeIn animation="fade-up" delay={900}>
           <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-            We help small and medium companies streamline operations through
-            digitalization and personalized automation solutions — so you can
-            focus on what matters most.
+            {t.description}
           </p>
         </FadeIn>
 
@@ -68,7 +69,7 @@ export default function Hero() {
               href="#contact"
               className="btn-glow group inline-flex items-center gap-2.5 rounded-full bg-dark px-8 py-4 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-primary hover:shadow-xl hover:shadow-primary/20"
             >
-              Let&apos;s talk
+              {t.cta}
               <ArrowRight
                 size={16}
                 className="transition-transform duration-300 group-hover:translate-x-0.5"
@@ -78,11 +79,12 @@ export default function Hero() {
               href="#services"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-white/60 px-8 py-4 text-[15px] font-semibold text-dark backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-white hover:shadow-lg hover:shadow-primary/5"
             >
-              See what we do
+              {t.secondary}
             </a>
           </div>
         </FadeIn>
       </div>
+
     </section>
   );
 }
