@@ -4,14 +4,14 @@ import "./globals.css";
 
 const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--font-syne",
   display: "swap",
   weight: ["700", "800"],
 });
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -50,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${inter.variable}`}>
+    <html lang="en" className={`${syne.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

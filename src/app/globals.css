@@ -1,22 +1,32 @@
 @import "tailwindcss";
 
 @theme {
+  /* Colors */
   --color-primary: #1A5CFF;
-  --color-primary-light: rgba(26, 92, 255, 0.13);
-  --color-primary-hover: rgba(26, 92, 255, 0.08);
+  --color-primary-light: rgba(26, 92, 255, 0.08);
+  --color-primary-medium: rgba(26, 92, 255, 0.15);
   --color-dark: #111110;
-  --color-muted: #888780;
-  --color-border: #E0DED8;
+  --color-muted: #71716E;
+  --color-subtle: #A3A29C;
+  --color-border: #E8E6E1;
   --color-surface: #FAFAF8;
   --color-white: #FFFFFF;
 
-  --font-heading: "Syne", sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  /* Fonts — reference next/font CSS variables */
+  --font-heading: var(--font-syne), "Syne", system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  /* Animation */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Smooth scroll */
+/* ── Base ────────────────────────────────────────────── */
+
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -25,9 +35,145 @@ body {
   background-color: var(--color-surface);
 }
 
-/* Heading defaults */
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* ── Selection ───────────────────────────────────────── */
+
+::selection {
+  background: rgba(26, 92, 255, 0.15);
+  color: #111110;
+}
+
+/* ── Scroll-reveal animation ─────────────────────────── */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Reveal classes — used by FadeIn component */
+.reveal {
+  opacity: 0;
+}
+.reveal.visible {
+  animation-fill-mode: both;
+  animation-timing-function: var(--ease-out-expo);
+}
+.reveal.visible.anim-fade-up {
+  animation: fade-up 0.8s var(--ease-out-expo) both;
+}
+.reveal.visible.anim-fade-in {
+  animation: fade-in 0.8s var(--ease-out-expo) both;
+}
+.reveal.visible.anim-scale-in {
+  animation: scale-in 0.7s var(--ease-out-expo) both;
+}
+.reveal.visible.anim-slide-left {
+  animation: slide-left 0.8s var(--ease-out-expo) both;
+}
+.reveal.visible.anim-slide-right {
+  animation: slide-right 0.8s var(--ease-out-expo) both;
+}
+
+/* ── Glow button effect ──────────────────────────────── */
+
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+.btn-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(26, 92, 255, 0.4), rgba(26, 92, 255, 0) 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: -1;
+}
+.btn-glow:hover::before {
+  opacity: 1;
+}
+
+/* ── Gradient text utility ───────────────────────────── */
+
+.text-gradient {
+  background: linear-gradient(135deg, #1A5CFF 0%, #4F8AFF 50%, #1A5CFF 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* ── Dot grid pattern ────────────────────────────────── */
+
+.bg-dot-pattern {
+  background-image: radial-gradient(circle, #E0DED8 1px, transparent 1px);
+  background-size: 24px 24px;
 }
