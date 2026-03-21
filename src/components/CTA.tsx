@@ -1,5 +1,5 @@
-import { ArrowRight } from "lucide-react";
 import FadeIn from "./FadeIn";
+import ContactForm from "./ContactForm";
 
 export default function CTA() {
   return (
@@ -22,13 +22,7 @@ export default function CTA() {
           </p>
         </FadeIn>
         <FadeIn animation="scale-in" delay={200}>
-          <a
-            href="mailto:hello@flowstatelabs.ai"
-            className="btn-glow inline-flex items-center gap-2.5 rounded-full bg-primary px-9 py-4 text-base font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/30"
-          >
-            Get in touch
-            <ArrowRight size={18} strokeWidth={2} />
-          </a>
+          <ContactForm />
         </FadeIn>
       </div>
     </section>
