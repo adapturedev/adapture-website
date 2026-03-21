@@ -124,7 +124,7 @@ const translations = {
         "Entraremos em contacto em breve. Obrigado por nos contactar.",
       successAction: "Enviar outra mensagem",
       error: "Algo correu mal. Por favor tente novamente.",
-      subject: "Novo contacto de flowstatelabs.ai",
+      subject: "Novo contacto de flowstatelabs.pt",
     },
     footer: {
       tagline: "Automatize melhor. Cresça mais rápido.",
@@ -258,7 +258,7 @@ const translations = {
         "We'll get back to you soon. Thanks for reaching out.",
       successAction: "Send another message",
       error: "Something went wrong. Please try again.",
-      subject: "New inquiry from flowstatelabs.ai",
+      subject: "New inquiry from flowstatelabs.pt",
     },
     footer: {
       tagline: "Automate smarter. Grow faster.",
