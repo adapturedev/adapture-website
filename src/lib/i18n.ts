@@ -12,34 +12,34 @@ const translations = {
       cta: "Fale connosco",
     },
     hero: {
-      badge: "Automação & Transformação Digital",
+      badge: "Automação com IA & Transformação Digital",
       heading1: "Automatize melhor.",
       heading2: "Cresça mais rápido.",
       description:
-        "Ajudamos pequenas e médias empresas a otimizar operações através da digitalização e soluções de automação personalizadas — para que se possam focar no que realmente importa.",
+        "Ajudamos pequenas e médias empresas a otimizar operações com automação inteligente e transformação digital — para que se possam focar no que realmente importa.",
       cta: "Vamos conversar",
       secondary: "O que fazemos",
     },
     marquee: [
-      "Automação de Processos",
+      "Automação com IA",
       "Transformação Digital",
       "Soluções Cloud",
       "Integrações Personalizadas",
       "Dados & Analytics",
-      "Desenvolvimento de APIs",
-      "Design de Workflows",
+      "Soluções de API",
+      "Workflows Inteligentes",
       "Dashboards Inteligentes",
     ],
     services: {
       label: "Serviços",
       heading: "O que fazemos",
       subtitle:
-        "Desenhamos e construímos soluções de automação que se adaptam à sua organização — e não o contrário.",
+        "Desenhamos e construímos soluções de automação com IA que se adaptam à sua organização — e não o contrário.",
       cards: [
         {
-          title: "Automação de Processos",
+          title: "Automação com IA",
           description:
-            "Elimine tarefas repetitivas e processos manuais com workflows de automação inteligentes adaptados ao seu negócio.",
+            "Elimine tarefas repetitivas e processos manuais com workflows de automação inteligentes — potenciados por IA e adaptados ao seu negócio.",
         },
         {
           title: "Transformação Digital",
@@ -54,7 +54,7 @@ const translations = {
         {
           title: "Dados & Analytics",
           description:
-            "Transforme dados em insights acionáveis com dashboards e relatórios construídos para a sua tomada de decisão.",
+            "Transforme dados em insights acionáveis com dashboards potenciados por IA, construídos para a sua tomada de decisão.",
         },
       ],
     },
@@ -72,7 +72,7 @@ const translations = {
         {
           title: "Engenharia pragmática",
           description:
-            "Usamos as ferramentas certas para cada trabalho. Sem overengineering, sem complexidade desnecessária.",
+            "Usamos as ferramentas certas — desde IA e machine learning a integrações comprovadas. Sem overengineering, sem complexidade desnecessária.",
         },
         {
           title: "Orientados a resultados",
@@ -108,7 +108,7 @@ const translations = {
       label: "Começar",
       heading: "Pronto para automatizar?",
       subtitle:
-        "Vamos conversar sobre como podemos otimizar as suas operações. Sem compromisso, sem pitch de vendas — apenas uma conversa sobre as suas necessidades.",
+        "Vamos conversar sobre como a IA e automação podem otimizar as suas operações. Sem compromisso, sem pitch de vendas — apenas uma conversa sobre as suas necessidades.",
     },
     contact: {
       name: "Nome",
@@ -131,11 +131,11 @@ const translations = {
       copyright: "Flowstate Labs. Todos os direitos reservados.",
     },
     meta: {
-      title: "Flowstate Labs — Automatize Melhor. Cresça Mais Rápido.",
+      title: "Flowstate Labs — Automação com IA para PMEs",
       description:
-        "A Flowstate Labs automatiza e acelera pequenas e médias empresas através de digitalização e soluções personalizadas. Otimize as suas operações hoje.",
+        "A Flowstate Labs usa IA e automação para acelerar pequenas e médias empresas através de transformação digital e soluções personalizadas. Otimize as suas operações hoje.",
       ogDescription:
-        "Automatizamos e aceleramos organizações através de digitalização e soluções personalizadas.",
+        "Usamos IA e automação para acelerar organizações através de transformação digital e soluções personalizadas.",
     },
   },
   en: {
@@ -146,34 +146,34 @@ const translations = {
       cta: "Get in touch",
     },
     hero: {
-      badge: "Automation & Digital Transformation",
+      badge: "AI-Powered Automation & Digital Transformation",
       heading1: "Automate smarter.",
       heading2: "Grow faster.",
       description:
-        "We help small and medium companies streamline operations through digitalization and personalized automation solutions — so you can focus on what matters most.",
+        "We help small and medium businesses streamline operations through AI-driven automation and digital transformation — so you can focus on what matters most.",
       cta: "Let's talk",
       secondary: "See what we do",
     },
     marquee: [
-      "Process Automation",
+      "AI-Powered Automation",
       "Digital Transformation",
       "Cloud Solutions",
       "Custom Integrations",
       "Data & Analytics",
-      "API Development",
-      "Workflow Design",
+      "API Solutions",
+      "Intelligent Workflows",
       "Smart Dashboards",
     ],
     services: {
       label: "Services",
       heading: "What we do",
       subtitle:
-        "We design and build automation solutions that fit your organization — not the other way around.",
+        "We design and build AI-powered automation solutions that fit your organization — not the other way around.",
       cards: [
         {
-          title: "Process Automation",
+          title: "AI-Powered Automation",
           description:
-            "Eliminate repetitive tasks and manual processes with smart automation workflows tailored to your business.",
+            "Eliminate repetitive tasks and manual processes with intelligent automation workflows — powered by AI and tailored to your business.",
         },
         {
           title: "Digital Transformation",
@@ -188,7 +188,7 @@ const translations = {
         {
           title: "Data & Analytics",
           description:
-            "Turn raw data into actionable insights with dashboards and reporting built for your decision-making.",
+            "Turn raw data into actionable insights with AI-enhanced dashboards and reporting built for your decision-making.",
         },
       ],
     },
@@ -206,7 +206,7 @@ const translations = {
         {
           title: "Pragmatic engineering",
           description:
-            "We use the right tools for the job. No overengineering, no unnecessary complexity.",
+            "We use the right tools for the job — from AI and machine learning to proven integrations. No overengineering, no unnecessary complexity.",
         },
         {
           title: "Results-driven",
@@ -242,7 +242,7 @@ const translations = {
       label: "Get started",
       heading: "Ready to automate?",
       subtitle:
-        "Let's talk about how we can streamline your operations. No commitment, no sales pitch — just a conversation about your needs.",
+        "Let's talk about how AI and automation can streamline your operations. No commitment, no sales pitch — just a conversation about your needs.",
     },
     contact: {
       name: "Name",
@@ -265,11 +265,11 @@ const translations = {
       copyright: "Flowstate Labs. All rights reserved.",
     },
     meta: {
-      title: "Flowstate Labs — Automate Smarter. Grow Faster.",
+      title: "Flowstate Labs — AI-Powered Automation for SMBs",
       description:
-        "Flowstate Labs automates and accelerates small-to-medium companies through digitalization and personalized solutions. Streamline your operations today.",
+        "Flowstate Labs uses AI and automation to accelerate small-to-medium businesses through digital transformation and personalized solutions. Streamline your operations today.",
       ogDescription:
-        "We automate and accelerate organizations through digitalization and personalized solutions.",
+        "We use AI and automation to accelerate organizations through digital transformation and personalized solutions.",
     },
   },
 };

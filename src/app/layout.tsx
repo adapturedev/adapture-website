@@ -39,11 +39,39 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": "ProfessionalService",
               name: "Flowstate Labs",
               url: "https://flowstatelabs.ai",
               description:
-                "We automate and accelerate small-to-medium companies through digitalization and personalized solutions.",
+                "AI-powered automation and digital transformation for small and medium businesses. We streamline operations with intelligent workflows, custom integrations, and data analytics.",
+              knowsAbout: [
+                "AI Automation",
+                "Digital Transformation",
+                "Process Automation",
+                "Cloud Solutions",
+                "Custom Integrations",
+                "Data Analytics",
+                "Machine Learning",
+                "Intelligent Workflows",
+              ],
+              serviceType: [
+                "AI-Powered Automation",
+                "Digital Transformation",
+                "Custom Software Integrations",
+                "Data & Analytics",
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Flowstate Labs",
+              url: "https://flowstatelabs.ai",
+              inLanguage: ["pt", "en"],
             }),
           }}
         />

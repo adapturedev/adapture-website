@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { locales, getTranslations, type Locale } from "@/lib/i18n";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Services from "@/components/Services";
-import WhyUs from "@/components/WhyUs";
-import HowWeWork from "@/components/HowWeWork";
-import CTA from "@/components/CTA";
-import Footer from "@/components/Footer";
+import { LocaleProvider } from "@/components/LocaleProvider";
+import LocaleContent from "@/components/LocaleContent";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -62,17 +56,8 @@ export default async function LocalePage({
   const l = locale as Locale;
 
   return (
-    <>
-      <Navbar locale={l} />
-      <main>
-        <Hero locale={l} />
-        <Marquee locale={l} />
-        <Services locale={l} />
-        <WhyUs locale={l} />
-        <HowWeWork locale={l} />
-        <CTA locale={l} />
-      </main>
-      <Footer locale={l} />
-    </>
+    <LocaleProvider initial={l}>
+      <LocaleContent />
+    </LocaleProvider>
   );
 }

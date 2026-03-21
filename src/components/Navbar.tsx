@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Globe, Moon, Sun } from "lucide-react";
 import { getTranslations, type Locale } from "@/lib/i18n";
+import { useLocale } from "./LocaleProvider";
 
 export default function Navbar({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dark, setDark] = useState(false);
+  const { setLocale } = useLocale();
   const t = getTranslations(locale).nav;
   const altLocale: Locale = locale === "pt" ? "en" : "pt";
 
@@ -92,14 +94,14 @@ export default function Navbar({ locale }: { locale: Locale }) {
           ))}
           {/* Language switcher */}
           <li>
-            <a
-              href={`/${altLocale}`}
+            <button
+              onClick={() => setLocale(altLocale)}
               className="inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide text-muted uppercase transition-colors duration-300 hover:text-fg"
               aria-label={altLocale === "en" ? "Switch to English" : "Mudar para Português"}
             >
               <Globe size={14} strokeWidth={1.8} />
               {altLocale.toUpperCase()}
-            </a>
+            </button>
           </li>
           {/* Theme toggle */}
           <li>
@@ -151,13 +153,13 @@ export default function Navbar({ locale }: { locale: Locale }) {
               </li>
             ))}
             <li>
-              <a
-                href={`/${altLocale}`}
+              <button
+                onClick={() => { setLocale(altLocale); setOpen(false); }}
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-fg"
               >
                 <Globe size={14} strokeWidth={1.8} />
                 {altLocale === "en" ? "English" : "Português"}
-              </a>
+              </button>
             </li>
             <li>
               <button

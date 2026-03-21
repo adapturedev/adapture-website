@@ -1,4 +1,3 @@
-import { Linkedin, Github } from "lucide-react";
 import { getTranslations, type Locale } from "@/lib/i18n";
 
 export default function Footer({ locale }: { locale: Locale }) {
@@ -30,27 +29,7 @@ export default function Footer({ locale }: { locale: Locale }) {
           </a>
         </nav>
 
-        {/* Social */}
-        <div className="flex items-center gap-5">
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-subtle transition-colors duration-200 hover:text-primary"
-          >
-            <Linkedin size={19} strokeWidth={1.8} />
-          </a>
-          <a
-            href="https://github.com/flowstatelabsai"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="text-subtle transition-colors duration-200 hover:text-primary"
-          >
-            <Github size={19} strokeWidth={1.8} />
-          </a>
-        </div>
+
       </div>
 
       <div className="mx-auto mt-10 max-w-6xl border-t border-border/40 px-6 pt-6">
