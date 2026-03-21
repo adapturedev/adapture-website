@@ -26,24 +26,126 @@ function Point({ icon, title, description, delay }: PointProps) {
   );
 }
 
-function AbstractGrid() {
-  const cells = [
-    "bg-primary/10", "bg-border/30", "bg-primary/[0.06]",
-    "bg-border/30", "bg-primary/15", "bg-border/30",
-    "bg-primary/[0.06]", "bg-border/30", "bg-primary/10",
-  ];
+function NetworkViz() {
+  const cx = 200, cy = 180;
+  const r1 = 78, r2 = 138;
+  const orbitPath = (r: number) =>
+    `M${cx + r},${cy} A${r},${r} 0 1,1 ${cx - r},${cy} A${r},${r} 0 1,1 ${cx + r},${cy}`;
+  const spokeAngles = [0, 60, 120, 180, 240, 300];
+
   return (
     <FadeIn animation="slide-left">
-      <div className="relative">
-        <div className="grid grid-cols-3 gap-3">
-          {cells.map((bg, i) => (
-            <div
-              key={i}
-              className={`aspect-square rounded-2xl ${bg} transition-colors duration-500`}
-            />
+      <div className="relative mx-auto w-full max-w-[420px]">
+        <svg viewBox="0 0 400 360" className="w-full" fill="none" aria-hidden="true">
+          <defs>
+            <path id="orbit-inner" d={orbitPath(r1)} />
+            <path id="orbit-outer" d={orbitPath(r2)} />
+          </defs>
+
+          {/* Radial spokes */}
+          {spokeAngles.map((deg) => {
+            const rad = (deg * Math.PI) / 180;
+            return (
+              <line
+                key={deg}
+                x1={cx} y1={cy}
+                x2={cx + Math.cos(rad) * (r2 + 20)}
+                y2={cy + Math.sin(rad) * (r2 + 20)}
+                stroke="#E8E6E1" strokeWidth={0.8}
+                strokeDasharray="3 8" opacity={0.4}
+              />
+            );
+          })}
+
+          {/* Orbit rings */}
+          <use href="#orbit-inner" stroke="#E8E6E1" strokeWidth={1} strokeDasharray="4 8" opacity={0.6} />
+          <use href="#orbit-outer" stroke="#E8E6E1" strokeWidth={1} strokeDasharray="4 8" opacity={0.5} />
+          <circle cx={cx} cy={cy} r={r2 + 30} stroke="#E8E6E1" strokeWidth={0.5} strokeDasharray="2 10" opacity={0.3} />
+
+          {/* Fast data pulses — inner orbit */}
+          {[0, -3].map((begin, i) => (
+            <circle key={`ip-${i}`} r={2.5} fill="#1A5CFF" opacity={0.65}>
+              <animateMotion dur="6s" repeatCount="indefinite" begin={`${begin}s`}>
+                <mpath href="#orbit-inner" />
+              </animateMotion>
+            </circle>
           ))}
-        </div>
-        <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
+
+          {/* Fast data pulses — outer orbit (reverse) */}
+          {[0, -4, -8].map((begin, i) => (
+            <circle key={`op-${i}`} r={2} fill="#1A5CFF" opacity={0.5}>
+              <animateMotion dur="10s" repeatCount="indefinite" begin={`${begin}s`} keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+                <mpath href="#orbit-outer" />
+              </animateMotion>
+            </circle>
+          ))}
+
+          {/* Inner orbit nodes — 3 nodes, clockwise, 30s */}
+          {[0, 1, 2].map((i) => (
+            <g key={`n1-${i}`}>
+              <animateMotion dur="30s" repeatCount="indefinite" begin={`${(-30 / 3) * i}s`}>
+                <mpath href="#orbit-inner" />
+              </animateMotion>
+              <circle r={16} fill="white" stroke="#E8E6E1" strokeWidth={1.5} />
+              {i === 0 && (
+                <circle r={11} fill="none" stroke="#1A5CFF" strokeWidth={1.5} opacity={0.25} strokeDasharray="69.1" strokeDashoffset={69.1} strokeLinecap="round">
+                  <animate attributeName="stroke-dashoffset" values="69.1;0;69.1" dur="4s" repeatCount="indefinite" />
+                </circle>
+              )}
+              <circle r={4} fill="#1A5CFF" opacity={0.5}>
+                <animate attributeName="opacity" values="0.3;0.8;0.3" dur={`${2 + i * 0.4}s`} repeatCount="indefinite" />
+              </circle>
+            </g>
+          ))}
+
+          {/* Outer orbit nodes — 4 nodes, counter-clockwise, 45s */}
+          {[0, 1, 2, 3].map((i) => (
+            <g key={`n2-${i}`}>
+              <animateMotion dur="45s" repeatCount="indefinite" begin={`${(-45 / 4) * i}s`} keyPoints="1;0" keyTimes="0;1" calcMode="linear">
+                <mpath href="#orbit-outer" />
+              </animateMotion>
+              <circle r={13} fill="white" stroke="#E8E6E1" strokeWidth={1.5} />
+              {i === 2 && (
+                <circle r={9} fill="none" stroke="#1A5CFF" strokeWidth={1.2} opacity={0.2} strokeDasharray="56.5" strokeDashoffset={56.5} strokeLinecap="round">
+                  <animate attributeName="stroke-dashoffset" values="56.5;0;56.5" dur="5s" repeatCount="indefinite" />
+                </circle>
+              )}
+              <circle r={3.5} fill="#1A5CFF" opacity={0.4}>
+                <animate attributeName="opacity" values="0.2;0.7;0.2" dur={`${2.5 + i * 0.3}s`} repeatCount="indefinite" />
+              </circle>
+            </g>
+          ))}
+
+          {/* Radar ping from hub */}
+          <circle cx={cx} cy={cy} r={26} fill="none" stroke="#1A5CFF" strokeWidth={1}>
+            <animate attributeName="r" values="26;80" dur="4s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.15;0" dur="4s" repeatCount="indefinite" />
+            <animate attributeName="stroke-width" values="1;0.3" dur="4s" repeatCount="indefinite" />
+          </circle>
+
+          {/* Hub breathing glow */}
+          <circle cx={cx} cy={cy} r={38} fill="#1A5CFF" opacity={0.04}>
+            <animate attributeName="r" values="38;50;38" dur="4s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.04;0.01;0.04" dur="4s" repeatCount="indefinite" />
+          </circle>
+          <circle cx={cx} cy={cy} r={30} fill="#1A5CFF" opacity={0.07}>
+            <animate attributeName="r" values="30;36;30" dur="4s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.07;0.03;0.07" dur="4s" repeatCount="indefinite" />
+          </circle>
+
+          {/* Hub circle */}
+          <circle cx={cx} cy={cy + 2} r={26} fill="#1A5CFF" opacity={0.12} />
+          <circle cx={cx} cy={cy} r={26} fill="#1A5CFF" />
+
+          {/* Hexagon mark inside hub */}
+          <polygon
+            points={`${cx},${cy - 13} ${cx + 11.3},${cy - 6.5} ${cx + 11.3},${cy + 6.5} ${cx},${cy + 13} ${cx - 11.3},${cy + 6.5} ${cx - 11.3},${cy - 6.5}`}
+            fill="white" opacity={0.9}
+          />
+        </svg>
+
+        {/* Ambient glow behind viz */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.05] blur-[60px]" />
       </div>
     </FadeIn>
   );
@@ -64,8 +166,8 @@ export default function WhyUs({ locale }: { locale: Locale }) {
       <div className="pointer-events-none absolute -right-60 top-0 h-[500px] w-[500px] rounded-full bg-primary/[0.03] blur-[80px]" />
 
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-2">
-        {/* Visual side — abstract grid */}
-        <AbstractGrid />
+        {/* Visual side — orbital network */}
+        <NetworkViz />
 
         {/* Content side */}
         <div>
