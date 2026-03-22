@@ -110,6 +110,11 @@ const translations = {
       subtitle:
         "Vamos conversar sobre como a IA e automação podem otimizar as suas operações. Sem compromisso, sem pitch de vendas — apenas uma conversa sobre as suas necessidades.",
     },
+    calendly: {
+      schedule: "Agendar uma chamada",
+      divider: "ou",
+      loading: "A carregar calendário...",
+    },
     contact: {
       name: "Nome",
       namePlaceholder: "O seu nome",
@@ -243,6 +248,11 @@ const translations = {
       heading: "Ready to automate?",
       subtitle:
         "Let's talk about how AI and automation can streamline your operations. No commitment, no sales pitch — just a conversation about your needs.",
+    },
+    calendly: {
+      schedule: "Schedule a call",
+      divider: "or",
+      loading: "Loading calendar...",
     },
     contact: {
       name: "Name",

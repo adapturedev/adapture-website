@@ -37,7 +37,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
 
   if (status === "success") {
     return (
-      <div className="mx-auto max-w-lg rounded-2xl border border-white/10 bg-white/[0.04] p-10 text-center backdrop-blur-sm">
+      <div className="w-full rounded-2xl border border-white/10 bg-white/[0.04] p-10 text-center backdrop-blur-sm">
         <CheckCircle className="mx-auto mb-4 text-green-400" size={48} strokeWidth={1.5} />
         <h3 className="mb-2 text-xl font-semibold text-white">{t.successTitle}</h3>
         <p className="text-white/60">
@@ -57,7 +57,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto max-w-lg space-y-5 rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-sm sm:p-10"
+      className="w-full space-y-5 rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-sm sm:p-10"
     >
       {/* Honeypot anti-spam */}
       <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />

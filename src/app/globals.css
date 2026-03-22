@@ -232,6 +232,21 @@ h1, h2, h3, h4 {
   animation: marquee-scroll 30s linear infinite;
 }
 
+/* ── Calendly embed ─────────────────────────────────── */
+
+.calendly-inline-widget {
+  width: 100%;
+  min-width: 320px;
+  height: 700px;
+}
+
+.calendly-inline-widget iframe {
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+  border-radius: 1rem;
+}
+
 /* ── 3D tilt card ────────────────────────────────────── */
 
 .tilt-card {
