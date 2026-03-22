@@ -29,7 +29,6 @@ export default function Navbar({ locale }: { locale: Locale }) {
   const links = [
     { label: t.services, href: "#services" },
     { label: t.about, href: "#why-us" },
-    { label: t.contact, href: "#contact" },
   ];
 
   return (
