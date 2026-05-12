@@ -1,11 +1,7 @@
-import dynamic from "next/dynamic";
 import FadeIn from "./FadeIn";
 import ContactForm from "./ContactForm";
+import CalendlyButton from "./CalendlyButton";
 import { getTranslations, type Locale } from "@/lib/i18n";
-
-const CalendlyEmbed = dynamic(() => import("./CalendlyButton"), {
-  ssr: false,
-});
 
 export default function CTA({ locale }: { locale: Locale }) {
   const translations = getTranslations(locale);
@@ -30,24 +26,14 @@ export default function CTA({ locale }: { locale: Locale }) {
           </p>
         </FadeIn>
 
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 lg:flex-row lg:items-stretch lg:gap-0">
-          {/* Calendly embed */}
-          <div className="w-full lg:flex-1">
-            <CalendlyEmbed locale={locale} />
-          </div>
+        <div className="mx-auto max-w-3xl">
+          <ContactForm locale={locale} />
 
-          {/* Vertical "OR" divider (desktop) / horizontal (mobile) */}
-          <div className="flex w-full items-center gap-4 lg:w-auto lg:flex-col lg:items-center lg:justify-center lg:px-8">
-            <div className="h-px flex-1 bg-white/10 lg:h-auto lg:w-px lg:flex-1" />
-            <span className="shrink-0 text-sm font-medium uppercase tracking-widest text-white/30">
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <span className="text-sm font-medium uppercase tracking-widest text-white/30">
               {translations.calendly.divider}
             </span>
-            <div className="h-px flex-1 bg-white/10 lg:h-auto lg:w-px lg:flex-1" />
-          </div>
-
-          {/* Contact form */}
-          <div className="flex w-full items-center lg:flex-1">
-            <ContactForm locale={locale} />
+            <CalendlyButton locale={locale} />
           </div>
         </div>
       </div>

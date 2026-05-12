@@ -108,7 +108,7 @@ const translations = {
       label: "Começar",
       heading: "Pronto para automatizar?",
       subtitle:
-        "Vamos conversar sobre como a IA e automação podem otimizar as suas operações. Sem compromisso, sem pitch de vendas — apenas uma conversa sobre as suas necessidades.",
+        "Vamos conversar sobre como a IA e automação podem otimizar as tuas operações. Sem compromisso, sem pitch de vendas — apenas uma conversa sobre o que precisas.",
     },
     calendly: {
       schedule: "Agendar uma chamada",
@@ -116,19 +116,75 @@ const translations = {
       loading: "A carregar calendário...",
     },
     contact: {
+      eyebrow: "Falar com a Adapture",
+      steps: [
+        {
+          title: "Quem és e de que",
+          accent: "empresa?",
+          subtitle: "Diz-nos o básico para percebermos o contexto.",
+        },
+        {
+          title: "Como te",
+          accent: "contactamos?",
+          subtitle: "Partilha o melhor contacto e a dimensão da tua operação.",
+        },
+        {
+          title: "Qual é o",
+          accent: "desafio?",
+          subtitle: "Sem floreados. Onde perdes mais tempo, dinheiro ou energia?",
+        },
+      ],
       name: "Nome",
-      namePlaceholder: "O seu nome",
+      namePlaceholder: "O teu nome",
+      company: "Empresa",
+      companyPlaceholder: "Nome da empresa",
       email: "Email",
-      emailPlaceholder: "voce@empresa.com",
+      emailPlaceholder: "tu@empresa.com",
+      phone: "Telefone (opcional)",
+      phonePlaceholder: "+351 ...",
+      teamSize: "Tamanho da equipa",
+      teamSizeOptions: ["1-10", "11-50", "51-200", "200+"],
+      annualScale: "Escala anual aproximada (opcional)",
+      annualScaleHint: "Ajuda-nos a ajustar a conversa, sem compromisso.",
+      annualScaleOptions: ["Até 1M €", "1M-2M €", "2M-10M €", "+10M €"],
+      focus: "Onde podemos ajudar primeiro?",
+      focusOptions: [
+        {
+          label: "Automação de processos",
+          description: "Tarefas repetitivas, aprovações e trabalho manual.",
+        },
+        {
+          label: "Integrações entre sistemas",
+          description: "Ferramentas que não comunicam bem entre si.",
+        },
+        {
+          label: "Workflows com IA",
+          description: "Assistentes, triagem, classificação e geração.",
+        },
+        {
+          label: "Dados e dashboards",
+          description: "Relatórios, métricas e decisões mais rápidas.",
+        },
+        {
+          label: "Ainda não sei",
+          description: "Sem problema. Ajudamos-te a mapear oportunidades.",
+        },
+      ],
       message: "Mensagem",
-      messagePlaceholder: "Fale-nos sobre o seu projeto...",
+      messagePlaceholder:
+        "Onde é que a tua operação está a perder tempo, dinheiro ou energia?",
+      website: "Website (opcional)",
+      websitePlaceholder: "https://...",
+      back: "Voltar",
+      continue: "Continuar",
       send: "Enviar mensagem",
       sending: "A enviar...",
       successTitle: "Mensagem enviada!",
       successMessage:
-        "Entraremos em contacto em breve. Obrigado por nos contactar.",
+        "Entraremos em contacto em breve. Obrigado por falares connosco.",
       successAction: "Enviar outra mensagem",
       error: "Algo correu mal. Por favor tente novamente.",
+      privacy: "Resposta rápida · Dados protegidos RGPD",
       subject: "Novo contacto de Adapture",
     },
     footer: {
@@ -256,12 +312,67 @@ const translations = {
       loading: "Loading calendar...",
     },
     contact: {
+      eyebrow: "Talk to Adapture",
+      steps: [
+        {
+          title: "Who are you, and which",
+          accent: "company?",
+          subtitle: "Start with the basics so we understand the context.",
+        },
+        {
+          title: "How should we",
+          accent: "contact you?",
+          subtitle: "Share the best contact details and operation size.",
+        },
+        {
+          title: "What should we",
+          accent: "automate?",
+          subtitle: "No fluff. Where are you losing time, money, or energy?",
+        },
+      ],
       name: "Name",
       namePlaceholder: "Your name",
+      company: "Company",
+      companyPlaceholder: "Company name",
       email: "Email",
       emailPlaceholder: "you@company.com",
+      phone: "Phone (optional)",
+      phonePlaceholder: "+351 ...",
+      teamSize: "Team size",
+      teamSizeOptions: ["1-10", "11-50", "51-200", "200+"],
+      annualScale: "Approximate annual scale (optional)",
+      annualScaleHint: "Helps us calibrate the conversation, no commitment.",
+      annualScaleOptions: ["Up to €1M", "€1M-€2M", "€2M-€10M", "€10M+"],
+      focus: "Where can we help first?",
+      focusOptions: [
+        {
+          label: "Process automation",
+          description: "Repetitive tasks, approvals, and manual work.",
+        },
+        {
+          label: "System integrations",
+          description: "Tools that do not communicate well yet.",
+        },
+        {
+          label: "AI workflows",
+          description: "Assistants, triage, classification, and generation.",
+        },
+        {
+          label: "Data and dashboards",
+          description: "Reports, metrics, and faster decisions.",
+        },
+        {
+          label: "Not sure yet",
+          description: "No problem. We will help you map opportunities.",
+        },
+      ],
       message: "Message",
-      messagePlaceholder: "Tell us about your project...",
+      messagePlaceholder:
+        "Where is your operation losing time, money, or energy?",
+      website: "Website (optional)",
+      websitePlaceholder: "https://...",
+      back: "Back",
+      continue: "Continue",
       send: "Send message",
       sending: "Sending...",
       successTitle: "Message sent!",
@@ -269,6 +380,7 @@ const translations = {
         "We'll get back to you soon. Thanks for reaching out.",
       successAction: "Send another message",
       error: "Something went wrong. Please try again.",
+      privacy: "Fast response · GDPR-protected data",
       subject: "New inquiry from Adapture",
     },
     footer: {
