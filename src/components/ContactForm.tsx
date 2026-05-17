@@ -21,13 +21,14 @@ type FormValues = {
   phone: string;
   teamSize: string;
   annualScale: string;
-  automationFocus: string;
+  automationFocus: string[];
   challenge: string;
   website: string;
 };
 
 const SUBMISSION_EMAIL = "adapture@adapture.pt";
-const FORM_ENDPOINT = `https://formsubmit.co/ajax/${SUBMISSION_EMAIL}`;
+const WEB3FORMS_ACCESS_KEY = "4a777630-bdb8-4979-bb39-6e8bb0ec74cf";
+const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 
 const initialValues: FormValues = {
   name: "",
@@ -36,7 +37,7 @@ const initialValues: FormValues = {
   phone: "",
   teamSize: "",
   annualScale: "",
-  automationFocus: "",
+  automationFocus: [],
   challenge: "",
   website: "",
 };
@@ -52,6 +53,7 @@ const choiceIdleClass =
   "border-white/12 bg-white/[0.03] text-white/75 hover:border-primary/60 hover:text-white";
 const choiceActiveClass =
   "border-primary bg-primary text-white shadow-lg shadow-primary/20";
+const errorTextClass = "mt-2 text-xs font-medium text-red-300";
 
 function getChoiceClass(active: boolean, extra = "") {
   return `${choiceBaseClass} ${active ? choiceActiveClass : choiceIdleClass} ${extra}`;
@@ -61,6 +63,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [step, setStep] = useState<FormStep>(0);
   const [values, setValues] = useState<FormValues>(initialValues);
+  const [validationAttempted, setValidationAttempted] = useState(false);
   const t = getTranslations(locale).contact;
   const fallbackMailHref = `mailto:${SUBMISSION_EMAIL}?subject=${encodeURIComponent(
     t.subject,
@@ -72,7 +75,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
       `${t.phone}: ${values.phone.trim() || "-"}`,
       `${t.teamSize}: ${values.teamSize || "-"}`,
       `${t.annualScale}: ${values.annualScale || "-"}`,
-      `${t.focus}: ${values.automationFocus || "-"}`,
+      `${t.focus}: ${values.automationFocus.join(", ") || "-"}`,
       `${t.message}: ${values.challenge.trim()}`,
       `${t.website}: ${values.website.trim() || "-"}`,
     ].join("\n"),
@@ -83,7 +86,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
       ? values.name.trim().length > 1 && values.company.trim().length > 1
       : step === 1
         ? emailPattern.test(values.email.trim()) && values.teamSize.length > 0
-        : values.automationFocus.length > 0 && values.challenge.trim().length > 8;
+        : values.automationFocus.length > 0 && values.challenge.trim().length >= 10;
 
   function updateValue(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -102,56 +105,92 @@ export default function ContactForm({ locale }: { locale: Locale }) {
     }));
   }
 
+  function toggleFocus(value: string) {
+    setValues((current) => {
+      const hasValue = current.automationFocus.includes(value);
+      return {
+        ...current,
+        automationFocus: hasValue
+          ? current.automationFocus.filter((item) => item !== value)
+          : [...current.automationFocus, value],
+      };
+    });
+  }
+
   function goNext() {
-    if (!canContinue || step === 2) return;
+    if (!canContinue || step === 2) {
+      setValidationAttempted(true);
+      return;
+    }
+
+    setValidationAttempted(false);
     setStep((current) => (current + 1) as FormStep);
   }
 
   function goBack() {
     setStatus("idle");
+    setValidationAttempted(false);
     setStep((current) => Math.max(0, current - 1) as FormStep);
   }
 
   function resetForm() {
     setValues(initialValues);
     setStep(0);
+    setValidationAttempted(false);
     setStatus("idle");
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!canContinue) return;
+    if (!canContinue) {
+      setValidationAttempted(true);
+      return;
+    }
 
     setStatus("sending");
 
     const form = e.currentTarget;
     const raw = new FormData(form);
-    const data = new FormData();
+    const honeypot = raw.get("_honey")?.toString().trim();
+    const botcheck = raw.get("botcheck") === "on";
 
-    data.append("_honey", raw.get("_honey")?.toString() ?? "");
-    data.append("_captcha", "false");
-    data.append("_subject", t.subject);
-    data.append("_template", "table");
-    data.append("_url", window.location.href);
-    data.append("locale", locale);
-    data.append("name", values.name.trim());
-    data.append("company", values.company.trim());
-    data.append("email", values.email.trim());
-    data.append("phone", values.phone.trim());
-    data.append("team_size", values.teamSize);
-    data.append("annual_scale", values.annualScale);
-    data.append("automation_focus", values.automationFocus);
-    data.append("message", values.challenge.trim());
-    data.append("website", values.website.trim());
+    if (honeypot || botcheck) {
+      setStatus("success");
+      setValues(initialValues);
+      return;
+    }
+
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: t.subject,
+      from_name: "Adapture Website",
+      name: values.name.trim(),
+      company: values.company.trim(),
+      email: values.email.trim(),
+      phone: values.phone.trim(),
+      team_size: values.teamSize,
+      annual_scale: values.annualScale || "-",
+      automation_focus: values.automationFocus.join(", "),
+      message: values.challenge.trim(),
+      website: values.website.trim() || "-",
+      locale,
+      page_url: window.location.href,
+    };
 
     try {
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: data,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
       });
+      const result = (await res.json().catch(() => null)) as {
+        success?: boolean;
+      } | null;
 
-      if (res.ok) {
+      if (res.ok && result?.success === true) {
         setStatus("success");
         setValues(initialValues);
       } else {
@@ -188,6 +227,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
     >
       {/* Honeypot anti-spam */}
       <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
+      <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} />
 
       <div className="mb-8">
         <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.38em] text-primary">
@@ -231,6 +271,9 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                 placeholder={t.namePlaceholder}
                 className={inputClass}
               />
+              {validationAttempted && values.name.trim().length <= 1 && (
+                <p className={errorTextClass}>{t.validation.requiredField}</p>
+              )}
             </div>
 
             <div>
@@ -247,6 +290,9 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                 placeholder={t.companyPlaceholder}
                 className={inputClass}
               />
+              {validationAttempted && values.company.trim().length <= 1 && (
+                <p className={errorTextClass}>{t.validation.requiredField}</p>
+              )}
             </div>
           </div>
         )}
@@ -268,6 +314,14 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                   placeholder={t.emailPlaceholder}
                   className={inputClass}
                 />
+                {validationAttempted && values.email.trim().length === 0 && (
+                  <p className={errorTextClass}>{t.validation.requiredField}</p>
+                )}
+                {validationAttempted &&
+                  values.email.trim().length > 0 &&
+                  !emailPattern.test(values.email.trim()) && (
+                    <p className={errorTextClass}>{t.validation.invalidEmail}</p>
+                  )}
               </div>
 
               <div>
@@ -302,6 +356,9 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                   </button>
                 ))}
               </div>
+              {validationAttempted && values.teamSize.length === 0 && (
+                <p className={errorTextClass}>{t.validation.selectTeamSize}</p>
+              )}
             </div>
 
             <div>
@@ -338,14 +395,15 @@ export default function ContactForm({ locale }: { locale: Locale }) {
               <p className={labelClass}>
                 -- {t.focus} *
               </p>
+              <p className="-mt-1 mb-3 text-xs text-white/40">{t.focusHint}</p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {t.focusOptions.map((option, index) => (
                   <button
                     key={option.label}
                     type="button"
-                    onClick={() => selectValue("automationFocus", option.label)}
+                    onClick={() => toggleFocus(option.label)}
                     className={getChoiceClass(
-                      values.automationFocus === option.label,
+                      values.automationFocus.includes(option.label),
                       `min-h-[84px] text-left ${
                         index === t.focusOptions.length - 1 ? "sm:col-span-2" : ""
                       }`,
@@ -356,7 +414,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                     </span>
                     <span
                       className={`mt-1 block text-xs leading-relaxed ${
-                        values.automationFocus === option.label
+                        values.automationFocus.includes(option.label)
                           ? "text-white/80"
                           : "text-white/42"
                       }`}
@@ -366,6 +424,9 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                   </button>
                 ))}
               </div>
+              {validationAttempted && values.automationFocus.length === 0 && (
+                <p className={errorTextClass}>{t.validation.selectFocus}</p>
+              )}
             </div>
 
             <div>
@@ -382,6 +443,15 @@ export default function ContactForm({ locale }: { locale: Locale }) {
                 placeholder={t.messagePlaceholder}
                 className={`${inputClass} resize-none`}
               />
+              <p
+                className={`mt-2 text-xs ${
+                  validationAttempted && values.challenge.trim().length < 10
+                    ? "font-medium text-red-300"
+                    : "text-white/40"
+                }`}
+              >
+                {t.validation.messageMin}
+              </p>
             </div>
 
             <div>
@@ -441,8 +511,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
           <button
             type="button"
             onClick={goNext}
-            disabled={!canContinue}
-            className="btn-glow inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 disabled:cursor-not-allowed disabled:opacity-45 sm:w-auto"
+            className="btn-glow inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 sm:w-auto"
           >
             {t.continue}
             <ArrowRight size={17} strokeWidth={2} />
@@ -450,7 +519,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
         ) : (
           <button
             type="submit"
-            disabled={status === "sending" || !canContinue}
+            disabled={status === "sending"}
             className="btn-glow inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 disabled:cursor-not-allowed disabled:opacity-45 sm:w-auto"
           >
             {status === "sending" ? (

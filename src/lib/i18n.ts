@@ -17,6 +17,7 @@ const translations = {
       heading2: "Cresça mais rápido.",
       description:
         "Ajudamos pequenas e médias empresas a otimizar operações com automação inteligente e transformação digital — para que se possam focar no que realmente importa.",
+      capabilities: ["Automação IA", "Integrações", "Dashboards"],
       cta: "Vamos conversar",
       secondary: "O que fazemos",
     },
@@ -148,6 +149,7 @@ const translations = {
       annualScaleHint: "Ajuda-nos a ajustar a conversa, sem compromisso.",
       annualScaleOptions: ["Até 1M €", "1M-2M €", "2M-10M €", "+10M €"],
       focus: "Onde podemos ajudar primeiro?",
+      focusHint: "Podes escolher mais do que uma opção.",
       focusOptions: [
         {
           label: "Automação de processos",
@@ -183,10 +185,17 @@ const translations = {
       successMessage:
         "Entraremos em contacto em breve. Obrigado por falares connosco.",
       successAction: "Enviar outra mensagem",
-      error: "Algo correu mal. Por favor tente novamente.",
+      error: "Algo correu mal. Tenta novamente.",
       errorFallback:
         "Se o problema continuar, podes enviar os mesmos dados por email.",
       emailFallback: "Abrir email pré-preenchido",
+      validation: {
+        requiredField: "Preenche este campo para continuar.",
+        invalidEmail: "Usa um email válido, por exemplo tu@empresa.com.",
+        selectTeamSize: "Escolhe o tamanho da equipa para continuarmos.",
+        selectFocus: "Escolhe pelo menos uma área onde podemos ajudar.",
+        messageMin: "Escreve pelo menos 10 caracteres.",
+      },
       privacy: "Resposta rápida · Dados protegidos RGPD",
       subject: "Novo contacto de Adapture",
     },
@@ -216,6 +225,7 @@ const translations = {
       heading2: "Grow faster.",
       description:
         "We help small and medium businesses streamline operations through AI-driven automation and digital transformation — so you can focus on what matters most.",
+      capabilities: ["AI automation", "Integrations", "Dashboards"],
       cta: "Let's talk",
       secondary: "See what we do",
     },
@@ -347,6 +357,7 @@ const translations = {
       annualScaleHint: "Helps us calibrate the conversation, no commitment.",
       annualScaleOptions: ["Up to €1M", "€1M-€2M", "€2M-€10M", "€10M+"],
       focus: "Where can we help first?",
+      focusHint: "You can choose more than one option.",
       focusOptions: [
         {
           label: "Process automation",
@@ -386,6 +397,13 @@ const translations = {
       errorFallback:
         "If the problem continues, you can send the same details by email.",
       emailFallback: "Open prefilled email",
+      validation: {
+        requiredField: "Fill this in to continue.",
+        invalidEmail: "Use a valid email, for example you@company.com.",
+        selectTeamSize: "Choose the team size to continue.",
+        selectFocus: "Choose at least one area where we can help.",
+        messageMin: "Write at least 10 characters.",
+      },
       privacy: "Fast response · GDPR-protected data",
       subject: "New inquiry from Adapture",
     },
