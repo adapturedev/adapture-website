@@ -41,7 +41,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         <p className="text-center text-xs text-subtle">
           &copy; {new Date().getFullYear()} {t.footer.copyright}
           {" · "}
-          <a href="mailto:adapure@adapture.pt" className="transition-colors duration-200 hover:text-fg">adapure@adapture.pt</a>
+          <a href="mailto:adapture@adapture.pt" className="transition-colors duration-200 hover:text-fg">adapture@adapture.pt</a>
           {" · "}
           Olhão, Portugal
         </p>

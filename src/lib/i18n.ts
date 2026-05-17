@@ -184,6 +184,9 @@ const translations = {
         "Entraremos em contacto em breve. Obrigado por falares connosco.",
       successAction: "Enviar outra mensagem",
       error: "Algo correu mal. Por favor tente novamente.",
+      errorFallback:
+        "Se o problema continuar, podes enviar os mesmos dados por email.",
+      emailFallback: "Abrir email pré-preenchido",
       privacy: "Resposta rápida · Dados protegidos RGPD",
       subject: "Novo contacto de Adapture",
     },
@@ -380,6 +383,9 @@ const translations = {
         "We'll get back to you soon. Thanks for reaching out.",
       successAction: "Send another message",
       error: "Something went wrong. Please try again.",
+      errorFallback:
+        "If the problem continues, you can send the same details by email.",
+      emailFallback: "Open prefilled email",
       privacy: "Fast response · GDPR-protected data",
       subject: "New inquiry from Adapture",
     },

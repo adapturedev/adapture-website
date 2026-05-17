@@ -26,7 +26,8 @@ type FormValues = {
   website: string;
 };
 
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/adapure@adapture.pt";
+const SUBMISSION_EMAIL = "adapture@adapture.pt";
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${SUBMISSION_EMAIL}`;
 
 const initialValues: FormValues = {
   name: "",
@@ -61,6 +62,21 @@ export default function ContactForm({ locale }: { locale: Locale }) {
   const [step, setStep] = useState<FormStep>(0);
   const [values, setValues] = useState<FormValues>(initialValues);
   const t = getTranslations(locale).contact;
+  const fallbackMailHref = `mailto:${SUBMISSION_EMAIL}?subject=${encodeURIComponent(
+    t.subject,
+  )}&body=${encodeURIComponent(
+    [
+      `${t.name}: ${values.name.trim()}`,
+      `${t.company}: ${values.company.trim()}`,
+      `${t.email}: ${values.email.trim()}`,
+      `${t.phone}: ${values.phone.trim() || "-"}`,
+      `${t.teamSize}: ${values.teamSize || "-"}`,
+      `${t.annualScale}: ${values.annualScale || "-"}`,
+      `${t.focus}: ${values.automationFocus || "-"}`,
+      `${t.message}: ${values.challenge.trim()}`,
+      `${t.website}: ${values.website.trim() || "-"}`,
+    ].join("\n"),
+  )}`;
 
   const canContinue =
     step === 0
@@ -115,6 +131,8 @@ export default function ContactForm({ locale }: { locale: Locale }) {
     data.append("_honey", raw.get("_honey")?.toString() ?? "");
     data.append("_captcha", "false");
     data.append("_subject", t.subject);
+    data.append("_template", "table");
+    data.append("_url", window.location.href);
     data.append("locale", locale);
     data.append("name", values.name.trim());
     data.append("company", values.company.trim());
@@ -385,9 +403,20 @@ export default function ContactForm({ locale }: { locale: Locale }) {
       </div>
 
       {status === "error" && (
-        <div className="mt-5 flex items-center gap-2 rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-400">
-          <AlertCircle size={16} />
-          {t.error}
+        <div className="mt-5 rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300">
+          <div className="flex items-start gap-2">
+            <AlertCircle size={16} className="mt-0.5 shrink-0" />
+            <div>
+              <p>{t.error}</p>
+              <p className="mt-1 text-red-200/70">{t.errorFallback}</p>
+              <a
+                href={fallbackMailHref}
+                className="mt-3 inline-flex font-semibold text-white underline decoration-white/25 underline-offset-4 transition-colors hover:text-primary"
+              >
+                {t.emailFallback}
+              </a>
+            </div>
+          </div>
         </div>
       )}
 
